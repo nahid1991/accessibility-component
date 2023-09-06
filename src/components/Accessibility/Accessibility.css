@@ -1,0 +1,65 @@
+.cursor {
+  cursor: url(https://cdn.userway.org/widgetapp/images/arrow_w.svg), auto !important;
+}
+
+.cursor * {
+  cursor: url(https://cdn.userway.org/widgetapp/images/arrow_w.svg), auto !important;
+}
+
+.highlight-link a {
+  background-color: black !important;
+  color: white !important;
+}
+
+.increased-letter-space * {
+  letter-spacing: 1rem !important;
+}
+
+.increased-line-height * {
+  line-height: 2.5rem !important;
+}
+
+.big-cursor-button {
+  background: url('https://cdn.userway.org/widgetapp/images/arrow_w.svg')
+    no-repeat center;
+}
+
+.hide-image * {
+  background-image: none !important;
+}
+
+.hide-image img {
+  display: none !important;
+}
+
+.accessibility-button {
+  height: 50px;
+  width: 50px;
+}
+
+.disabled-person-button {
+  width: 80px;
+  height: 80px;
+  font-size: 1.5rem;
+  border: 3px solid !important;
+  background-color: white !important;
+  border-radius: 50% !important;
+  position: fixed;
+  top: 50%;
+  left: 0;
+  transform: translateY(-50%);
+  z-index: 9999999 !important;
+}
+
+.left-bar {
+  width: 30%;
+  position: fixed;
+  cursor: inherit;
+  padding: 5px;
+}
+
+/** {*/
+/*  background-color: #000 !important;*/
+/*  color: #fff !important;*/
+/*  border: 1px solid #fff !important;*/
+/*}*/
