@@ -29,7 +29,7 @@
 }
 
 .hide-image img {
-  display: none !important;
+  opacity: 0 !important;
 }
 
 .accessibility-button {
