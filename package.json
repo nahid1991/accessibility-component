@@ -30,7 +30,8 @@
     "rollup-plugin-dts": "^6.0.1",
     "rollup-plugin-postcss": "^4.0.2",
     "tslib": "^2.6.2",
-    "typescript": "^5.2.2"
+    "typescript": "^5.2.2",
+    "@mui/material": "^5.14.8"
   },
   "main": "dist/cjs/index.js",
   "module": "dist/esm/index.js",
