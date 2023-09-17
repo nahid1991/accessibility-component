@@ -39,7 +39,7 @@ const Accessibility: React.FC<AccessibilityProps> = ({ children }) => {
     if (highlightLink) newClasses.add('highlight-link');
     if (hideImage) newClasses.add('hide-image');
     if (increasedLetterSpace) newClasses.add('increased-letter-space');
-    if (increasedLineHeight) newClasses.add('increased-letter-height');
+    if (increasedLineHeight) newClasses.add('increased-line-height');
     setClasses(Array.from(newClasses));
   }, [
     bigCursor,
