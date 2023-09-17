@@ -54,6 +54,9 @@ const Accessibility: React.FC<AccessibilityProps> = ({ children }) => {
 
   const handleReadingMask = useCallback(() => {
     setReadingMask(!readingMask);
+    setDarkContrast(false);
+    setInvertColor(false);
+    setLightContrast(false);
   }, [readingMask]);
 
   const handleLinkHighlightingChange = useCallback(() => {
