@@ -133,14 +133,14 @@ const Accessibility: React.FC<AccessibilityProps> = ({ children }) => {
         <Grid
           className="left-bar"
           flexDirection="column"
-          height={'100vh'}
+          height="100%"
           width="40%"
           justifyContent="flex-start"
           sx={{
             border: "1px solid gray",
             backgroundColor: '#eff1f5',
             zIndex: 9999,
-            position: 'fixed',
+            position: 'fixed !important',
             top: 0,
             left: 0,
           }}

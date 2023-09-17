@@ -76,7 +76,7 @@
   background-color: white !important;
   border-radius: 50% !important;
   position: fixed;
-  top: 50%;
+  top: 50vh;
   left: 0;
   transform: translateY(-50%);
   z-index: 9999999 !important;
