@@ -1,3 +1,34 @@
+.dark-contrast * {
+  background-color: #000000 !important;
+  color: white !important;
+}
+
+.dark-contrast .dark-contrast-border {
+  border: 1px solid #fff !important;
+}
+
+.dark-contrast .MuiTouchRipple-root {
+  display: none;
+}
+
+.light-contrast * {
+  background-color: white !important;
+  color: #000000 !important;
+}
+
+.light-contrast .light-contrast-border {
+  border: 1px solid #000000 !important;
+}
+
+.light-contrast .MuiTouchRipple-root {
+  display: none;
+}
+
+.invert-color {
+  filter: invert(100%) !important;
+  -webkit-filter: invert(100%) !important;
+}
+
 .cursor {
   cursor: url(https://cdn.userway.org/widgetapp/images/arrow_w.svg), auto !important;
 }
@@ -57,9 +88,3 @@
   cursor: inherit;
   padding: 5px;
 }
-
-/** {*/
-/*  background-color: #000 !important;*/
-/*  color: #fff !important;*/
-/*  border: 1px solid #fff !important;*/
-/*}*/

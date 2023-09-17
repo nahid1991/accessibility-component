@@ -9,7 +9,8 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "copy": "rm -rf ./src/components/* && cp -R ../portal/src/components/accessibility/components/* ./src/components",
     "rollup": "rollup -c",
-    "publish:patch": "npm version patch && npm publish"
+    "patch": "npm version patch",
+    "publish": "npm publish"
   },
   "keywords": [
     "accessibility",
