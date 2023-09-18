@@ -1,1 +1,1 @@
-export {default} from "./Bootstrap.tsx";
+export {default} from "./Bootstrap";

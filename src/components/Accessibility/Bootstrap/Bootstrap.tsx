@@ -87,7 +87,6 @@ const Bootstrap: React.FC<BootstrapInterface> = React.forwardRef((
             border: "1px solid gray",
             backgroundColor: '#eff1f5',
             zIndex: 9999,
-            position: 'fixed !important',
             top: 0,
             left: 0,
             overflow: 'auto',

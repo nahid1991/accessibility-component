@@ -84,7 +84,7 @@
 
 .left-bar {
   width: 30%;
-  position: fixed;
+  position: fixed !important;
   cursor: inherit;
   padding: 5px;
 }
