@@ -41,11 +41,52 @@ const Accessibility: React.FC<AccessibilityProps> = ({ children, theme = "mui" }
     increasedLineHeight
   ]);
 
+  useEffect(() => {
+    setBigCursor(!!localStorage.getItem("bigCursor"));
+  }, []);
+
+  useEffect(() => {
+    setReadingMask(!!localStorage.getItem("readingMask"));
+  }, []);
+
+  useEffect(() => {
+    setHighlightLink(!!localStorage.getItem("highlightLink"));
+  }, []);
+
+  useEffect(() => {
+    setHideImage(!!localStorage.getItem("hideImage"));
+  }, []);
+
+  useEffect(() => {
+    setIncreasedLetterSpace(!!localStorage.getItem("increasedLetterSpace"));
+  }, []);
+
+  useEffect(() => {
+    setIncreasedLineHeight(!!localStorage.getItem("increasedLineHeight"));
+  }, []);
+
+  useEffect(() => {
+    setDarkContrast(!!localStorage.getItem("darkContrast"));
+  }, []);
+
+  useEffect(() => {
+    setLightContrast(!!localStorage.getItem("lightContrast"));
+  }, []);
+
+  useEffect(() => {
+    setInvertColor(!!localStorage.getItem("invertColor"));
+  }, []);
+
   const handleBigCursorChange = useCallback(() => {
+    bigCursor ? localStorage.removeItem("bigCursor") : localStorage.setItem("bigCursor", "1");
     setBigCursor(!bigCursor);
   }, [bigCursor]);
 
   const handleReadingMask = useCallback(() => {
+    readingMask ? localStorage.removeItem("readingMask") : localStorage.setItem("readingMask", "1");
+    localStorage.removeItem("darkContrast");
+    localStorage.removeItem("lightContrast");
+    localStorage.removeItem("invertColor");
     setReadingMask(!readingMask);
     setDarkContrast(false);
     setInvertColor(false);
@@ -53,10 +94,12 @@ const Accessibility: React.FC<AccessibilityProps> = ({ children, theme = "mui" }
   }, [readingMask]);
 
   const handleLinkHighlightingChange = useCallback(() => {
+    highlightLink ? localStorage.removeItem("highlightLink") : localStorage.setItem("highlightLink", "1");
     setHighlightLink(!highlightLink);
   }, [highlightLink]);
 
   const handleHideImage = useCallback(() => {
+    hideImage ? localStorage.removeItem("hideImage") : localStorage.setItem("hideImage", "1");
     setHideImage(!hideImage);
   }, [hideImage]);
 
@@ -73,29 +116,46 @@ const Accessibility: React.FC<AccessibilityProps> = ({ children, theme = "mui" }
   );
 
   const handleLetterSpace = useCallback(() => {
+    increasedLetterSpace ? localStorage.removeItem("increasedLetterSpace") : localStorage.setItem("increasedLetterSpace", "1");
     setIncreasedLetterSpace(!increasedLetterSpace);
   }, [increasedLetterSpace]);
 
   const handleLineHeight = useCallback(() => {
+    increasedLineHeight ? localStorage.removeItem("increasedLineHeight") : localStorage.setItem("increasedLineHeight", "1");
     setIncreasedLineHeight(!increasedLineHeight);
   }, [increasedLineHeight]);
 
   const handleDarkContrast = useCallback(() => {
+    darkContrast ? localStorage.removeItem("darkContrast") : localStorage.setItem("darkContrast", "1");
+    localStorage.removeItem("readingMask");
+    localStorage.removeItem("lightContrast");
+    localStorage.removeItem("invertColor");
     setDarkContrast(!darkContrast);
     setLightContrast(false);
     setInvertColor(false);
+    setReadingMask(false);
   }, [darkContrast]);
 
   const handleLightContrast = useCallback(() => {
+    lightContrast ? localStorage.removeItem("lightContrast") : localStorage.setItem("lightContrast", "1");
+    localStorage.removeItem("darkContrast");
+    localStorage.removeItem("readingMask");
+    localStorage.removeItem("invertColor");
     setLightContrast(!lightContrast);
     setDarkContrast(false);
     setInvertColor(false);
+    setReadingMask(false);
   }, [lightContrast]);
 
   const handleInvertColor = useCallback(() => {
+    invertColor ? localStorage.removeItem("invertColor") : localStorage.setItem("invertColor", "1");
+    localStorage.removeItem("darkContrast");
+    localStorage.removeItem("lightContrast");
+    localStorage.removeItem("readingMask");
     setInvertColor(!invertColor);
     setLightContrast(false);
     setDarkContrast(false);
+    setReadingMask(false);
   }, [invertColor]);
 
   useEffect(() => {
