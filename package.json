@@ -1,6 +1,6 @@
 {
   "name": "@nahid1991/accessibility-package",
-  "version": "0.0.15",
+  "version": "0.0.16",
   "publishConfig": {
     "registry": "https://npm.pkg.github.com/nahid1991"
   },
