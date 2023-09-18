@@ -202,32 +202,6 @@ const Bootstrap: React.FC<BootstrapInterface> = React.forwardRef((
           <Col md={4} sm={12}>
             <Button
               className={`accessibility-button mb-1`}
-              variant={increasedLineHeight ? "primary" : "outline-dark"}
-              size="lg"
-              onClick={() => handleLineHeight()}
-              style={{
-                cursor: bigCursor ? 'inherit' : 'pointer',
-                height: "125px",
-                borderRadius: "20px",
-                padding: "inherit",
-                width: "100%",
-              }}
-            >
-              <Container>
-                <Row>
-                  <Col xs={12} className="mb-3">
-                    <FaArrowsAltV size={30}/>
-                  </Col>
-                  <Col xs={12}>
-                    <h6>Increase Line Height</h6>
-                  </Col>
-                </Row>
-              </Container>
-            </Button>
-          </Col>
-          <Col md={4} sm={12}>
-            <Button
-              className={`accessibility-button mb-1`}
               variant={increasedLetterSpace ? "primary" : "outline-dark"}
               size="lg"
               onClick={() => handleLetterSpace()}
@@ -246,6 +220,32 @@ const Bootstrap: React.FC<BootstrapInterface> = React.forwardRef((
                   </Col>
                   <Col xs={12}>
                     <h6>Increase Letter Space</h6>
+                  </Col>
+                </Row>
+              </Container>
+            </Button>
+          </Col>
+          <Col md={4} sm={12}>
+            <Button
+              className={`accessibility-button mb-1`}
+              variant={increasedLineHeight ? "primary" : "outline-dark"}
+              size="lg"
+              onClick={() => handleLineHeight()}
+              style={{
+                cursor: bigCursor ? 'inherit' : 'pointer',
+                height: "125px",
+                borderRadius: "20px",
+                padding: "inherit",
+                width: "100%",
+              }}
+            >
+              <Container>
+                <Row>
+                  <Col xs={12} className="mb-3">
+                    <FaArrowsAltV size={30}/>
+                  </Col>
+                  <Col xs={12}>
+                    <h6>Increase Line Height</h6>
                   </Col>
                 </Row>
               </Container>
@@ -345,7 +345,7 @@ const Bootstrap: React.FC<BootstrapInterface> = React.forwardRef((
       >
         <BiAccessibility size={30} />
       </Button>
-      <Container className={classes.join()}>
+      <Container className={classes.join(" ")}>
         {children}
       </Container>
     </Container>
