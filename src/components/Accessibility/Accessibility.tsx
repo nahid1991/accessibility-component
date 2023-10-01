@@ -253,7 +253,7 @@ const Accessibility: React.FC<AccessibilityProps> = ({
           );
         }
       } else if (childNode.nodeType === Node.TEXT_NODE) {
-        const textContent = childNode.textContent?.trim() || '';
+        const textContent = (childNode.textContent && childNode.textContent.trim()) || '';
         if (textContent !== '') {
           nodeData.innerTexts.push(textContent);
         }
