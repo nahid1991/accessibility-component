@@ -147,7 +147,7 @@ const MUI: React.FC<MUIProps> = React.forwardRef(
                     paddingLeft: "5px"
                   }}
                 >
-                  <Typography variant="h5">
+                  <Typography variant="caption">
                     Accessibility Menu
                   </Typography>
                 </Grid>
