@@ -144,6 +144,9 @@ const Accessibility: React.FC<AccessibilityProps> = ({
     setDarkContrast(false);
     setInvertColor(false);
     setLightContrast(false);
+    setLowSaturation(false);
+    setDesaturation(false);
+    setHighSaturation(false);
   }, [readingMask]);
 
   const handleLinkHighlightingChange = useCallback(() => {
@@ -200,6 +203,9 @@ const Accessibility: React.FC<AccessibilityProps> = ({
     setLightContrast(false);
     setInvertColor(false);
     setReadingMask(false);
+    setLowSaturation(false);
+    setDesaturation(false);
+    setHighSaturation(false);
   }, [darkContrast]);
 
   const handleLightContrast = useCallback(() => {
