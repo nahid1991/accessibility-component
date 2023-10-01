@@ -240,8 +240,9 @@ const Accessibility: React.FC<AccessibilityProps> = ({
       children: []
     };
 
-    // @ts-ignore
-    for (const childNode of node.childNodes) {
+    const childNodesArray = Array.from(node.childNodes); // Convert to array
+
+    for (const childNode of childNodesArray) {
       if (childNode.nodeType === Node.ELEMENT_NODE) {
         const element = childNode as HTMLElement;
         if (/^H\d$/.test(element.tagName)) {
