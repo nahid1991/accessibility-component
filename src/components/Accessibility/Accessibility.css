@@ -88,3 +88,11 @@
   cursor: inherit;
   padding: 5px;
 }
+
+.left-align * {
+  text-align: left !important;
+}
+
+.right-align * {
+  text-align: right !important;
+}
