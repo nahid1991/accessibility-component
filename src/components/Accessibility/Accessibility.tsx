@@ -40,6 +40,9 @@ const Accessibility: React.FC<AccessibilityProps> = ({
   const [headings, setHeadings] = useState<HeadingData[]>([]);
   const [shouldLeftAlign, setShouldLeftAlign] = useState<boolean>(false);
   const [shouldRightAlign, setShouldRightAlign] = useState<boolean>(false);
+  const [lowSaturation, setLowSaturation] = useState<boolean>(false);
+  const [highSaturation, setHighSaturation] = useState<boolean>(false);
+  const [desaturation, setDesaturation] = useState<boolean>(false);
 
   useEffect(() => {
     const newClasses: Set<string> = new Set<string>();
@@ -50,6 +53,9 @@ const Accessibility: React.FC<AccessibilityProps> = ({
     if (increasedLineHeight) newClasses.add('increased-line-height');
     if (shouldLeftAlign) newClasses.add('left-align');
     if (shouldRightAlign) newClasses.add('right-align');
+    if (lowSaturation) newClasses.add('low-saturation');
+    if (highSaturation) newClasses.add('high-saturation');
+    if (desaturation) newClasses.add('desaturation');
     setClasses(Array.from(newClasses));
   }, [
     bigCursor,
@@ -58,7 +64,10 @@ const Accessibility: React.FC<AccessibilityProps> = ({
     increasedLetterSpace,
     increasedLineHeight,
     shouldLeftAlign,
-    shouldRightAlign
+    shouldRightAlign,
+    lowSaturation,
+    highSaturation,
+    desaturation
   ]);
 
   useEffect(() => {
@@ -103,6 +112,18 @@ const Accessibility: React.FC<AccessibilityProps> = ({
 
   useEffect(() => {
     setShouldRightAlign(!!localStorage.getItem('rightAlign'));
+  }, []);
+
+  useEffect(() => {
+    setLowSaturation(!!localStorage.getItem('lowSaturation'));
+  }, []);
+
+  useEffect(() => {
+    setHighSaturation(!!localStorage.getItem('highSaturation'));
+  }, []);
+
+  useEffect(() => {
+    setDesaturation(!!localStorage.getItem('desaturation'));
   }, []);
 
   const handleBigCursorChange = useCallback(() => {
@@ -172,6 +193,9 @@ const Accessibility: React.FC<AccessibilityProps> = ({
     localStorage.removeItem('readingMask');
     localStorage.removeItem('lightContrast');
     localStorage.removeItem('invertColor');
+    localStorage.removeItem('lowSaturation');
+    localStorage.removeItem('highSaturation');
+    localStorage.removeItem('desaturation');
     setDarkContrast(!darkContrast);
     setLightContrast(false);
     setInvertColor(false);
@@ -185,10 +209,16 @@ const Accessibility: React.FC<AccessibilityProps> = ({
     localStorage.removeItem('darkContrast');
     localStorage.removeItem('readingMask');
     localStorage.removeItem('invertColor');
+    localStorage.removeItem('lowSaturation');
+    localStorage.removeItem('highSaturation');
+    localStorage.removeItem('desaturation');
     setLightContrast(!lightContrast);
     setDarkContrast(false);
     setInvertColor(false);
     setReadingMask(false);
+    setLowSaturation(false);
+    setDesaturation(false);
+    setHighSaturation(false);
   }, [lightContrast]);
 
   const handleInvertColor = useCallback(() => {
@@ -198,11 +228,71 @@ const Accessibility: React.FC<AccessibilityProps> = ({
     localStorage.removeItem('darkContrast');
     localStorage.removeItem('lightContrast');
     localStorage.removeItem('readingMask');
+    localStorage.removeItem('lowSaturation');
+    localStorage.removeItem('highSaturation');
+    localStorage.removeItem('desaturation');
     setInvertColor(!invertColor);
     setLightContrast(false);
     setDarkContrast(false);
     setReadingMask(false);
+    setLowSaturation(false);
+    setDesaturation(false);
+    setHighSaturation(false);
   }, [invertColor]);
+
+  const handleLowSaturation = useCallback(() => {
+    lowSaturation
+      ? localStorage.removeItem('lowSaturation')
+      : localStorage.setItem('lowSaturation', '1');
+    localStorage.removeItem('darkContrast');
+    localStorage.removeItem('lightContrast');
+    localStorage.removeItem('readingMask');
+    localStorage.removeItem('highSaturation');
+    localStorage.removeItem('desaturation');
+    setLowSaturation(!lowSaturation);
+    setInvertColor(false);
+    setLightContrast(false);
+    setDarkContrast(false);
+    setReadingMask(false);
+    setDesaturation(false);
+    setHighSaturation(false);
+  }, [lowSaturation]);
+
+  const handleHighSaturation = useCallback(() => {
+    highSaturation
+      ? localStorage.removeItem('highSaturation')
+      : localStorage.setItem('highSaturation', '1');
+    localStorage.removeItem('darkContrast');
+    localStorage.removeItem('lightContrast');
+    localStorage.removeItem('readingMask');
+    localStorage.removeItem('lowSaturation');
+    localStorage.removeItem('desaturation');
+    setHighSaturation(!highSaturation);
+    setInvertColor(false);
+    setLightContrast(false);
+    setDarkContrast(false);
+    setReadingMask(false);
+    setDesaturation(false);
+    setLowSaturation(false);
+  }, [highSaturation]);
+
+  const handleDesaturation = useCallback(() => {
+    desaturation
+      ? localStorage.removeItem('desaturation')
+      : localStorage.setItem('desaturation', '1');
+    localStorage.removeItem('darkContrast');
+    localStorage.removeItem('lightContrast');
+    localStorage.removeItem('readingMask');
+    localStorage.removeItem('lowSaturation');
+    localStorage.removeItem('desaturation');
+    setInvertColor(false);
+    setLightContrast(false);
+    setDarkContrast(false);
+    setReadingMask(false);
+    setDesaturation(!desaturation);
+    setLowSaturation(false);
+    setHighSaturation(false);
+  }, [desaturation]);
 
   const getTextContent = useCallback((element: Element): string => {
     let text = '';
@@ -315,6 +405,9 @@ const Accessibility: React.FC<AccessibilityProps> = ({
     setIsPageStructureOpen(false);
     setShouldLeftAlign(false);
     setShouldRightAlign(false);
+    setHighSaturation(false);
+    setLowSaturation(false);
+    setDesaturation(false);
 
     localStorage.removeItem('bigCursor');
     localStorage.removeItem('readingMask');
@@ -327,6 +420,9 @@ const Accessibility: React.FC<AccessibilityProps> = ({
     localStorage.removeItem('invertColor');
     localStorage.removeItem('leftAlign');
     localStorage.removeItem('rightAlign');
+    localStorage.removeItem('lowSaturation');
+    localStorage.removeItem('highSaturation');
+    localStorage.removeItem('desaturation');
   }, []);
 
   useEffect(() => {
@@ -379,6 +475,12 @@ const Accessibility: React.FC<AccessibilityProps> = ({
           shouldRightAlign={shouldRightAlign}
           handleRightAlign={handleRightAlign}
           handleReset={handleReset}
+          lowSaturation={lowSaturation}
+          highSaturation={highSaturation}
+          desaturation={desaturation}
+          handleLowSaturation={handleLowSaturation}
+          handleHighSaturation={handleHighSaturation}
+          handleDesaturation={handleDesaturation}
         />
       ) : (
         <MUI
@@ -415,6 +517,12 @@ const Accessibility: React.FC<AccessibilityProps> = ({
           shouldRightAlign={shouldRightAlign}
           handleRightAlign={handleRightAlign}
           handleReset={handleReset}
+          lowSaturation={lowSaturation}
+          highSaturation={highSaturation}
+          desaturation={desaturation}
+          handleLowSaturation={handleLowSaturation}
+          handleHighSaturation={handleHighSaturation}
+          handleDesaturation={handleDesaturation}
         />
       )}
     </>

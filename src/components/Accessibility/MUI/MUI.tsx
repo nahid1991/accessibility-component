@@ -55,6 +55,12 @@ export interface MUIProps {
   shouldRightAlign?: boolean;
   handleRightAlign?: () => void;
   handleReset?: () => void;
+  lowSaturation?: boolean;
+  highSaturation?: boolean;
+  desaturation?: boolean;
+  handleLowSaturation?: () => void;
+  handleHighSaturation?: () => void;
+  handleDesaturation?: () => void;
 }
 
 const MUI: React.FC<MUIProps> = React.forwardRef(
@@ -92,7 +98,13 @@ const MUI: React.FC<MUIProps> = React.forwardRef(
       handleLeftAlign = () => {},
       shouldRightAlign = false,
       handleRightAlign = () => {},
-      handleReset = () => {}
+      handleReset = () => {},
+      lowSaturation = false,
+      highSaturation = false,
+      desaturation = false,
+      handleLowSaturation = () => {},
+      handleHighSaturation = () => {},
+      handleDesaturation = () => {}
     },
     ref
   ) => {
@@ -168,7 +180,10 @@ const MUI: React.FC<MUIProps> = React.forwardRef(
                       !invertColor &&
                       !isPageStructureOpen &&
                       !shouldLeftAlign &&
-                      !shouldRightAlign
+                      !shouldRightAlign &&
+                      !lowSaturation &&
+                      !highSaturation &&
+                      !desaturation
                     }
                     fullWidth
                     onClick={() => handleReset()}
@@ -229,7 +244,6 @@ const MUI: React.FC<MUIProps> = React.forwardRef(
                   fullWidth
                   onClick={() => handleReadingMask()}
                   sx={{
-                    cursor: bigCursor ? 'inherit' : 'pointer',
                     height: '125px',
                     backgroundColor: readingMask ? '#87B922' : 'white',
                     borderColor: readingMask ? '#fff' : '#000',
@@ -268,7 +282,6 @@ const MUI: React.FC<MUIProps> = React.forwardRef(
                   fullWidth
                   onClick={() => handleLinkHighlightingChange()}
                   sx={{
-                    cursor: bigCursor ? 'inherit' : 'pointer',
                     height: '125px',
                     backgroundColor: highlightLink ? '#87B922' : 'white',
                     borderColor: highlightLink ? '#fff' : '#000',
@@ -307,7 +320,6 @@ const MUI: React.FC<MUIProps> = React.forwardRef(
                   fullWidth
                   onClick={() => handleHideImage()}
                   sx={{
-                    cursor: bigCursor ? 'inherit' : 'pointer',
                     height: '125px',
                     backgroundColor: hideImage ? '#87B922' : 'white',
                     borderColor: hideImage ? '#fff' : '#000',
@@ -346,7 +358,6 @@ const MUI: React.FC<MUIProps> = React.forwardRef(
                   fullWidth
                   onClick={() => handleLetterSpace()}
                   sx={{
-                    cursor: bigCursor ? 'inherit' : 'pointer',
                     height: '125px',
                     backgroundColor: increasedLetterSpace ? '#87B922' : 'white',
                     borderColor: increasedLetterSpace ? '#fff' : '#000',
@@ -387,7 +398,6 @@ const MUI: React.FC<MUIProps> = React.forwardRef(
                   fullWidth
                   onClick={() => handleLineHeight()}
                   sx={{
-                    cursor: bigCursor ? 'inherit' : 'pointer',
                     height: '125px',
                     backgroundColor: increasedLineHeight ? '#87B922' : 'white',
                     borderColor: increasedLineHeight ? '#fff' : '#000',
@@ -428,7 +438,6 @@ const MUI: React.FC<MUIProps> = React.forwardRef(
                   fullWidth
                   onClick={() => handleDarkContrast()}
                   sx={{
-                    cursor: bigCursor ? 'inherit' : 'pointer',
                     height: '125px',
                     backgroundColor: darkContrast ? '#87B922' : 'white',
                     borderColor: darkContrast ? '#fff' : '#000',
@@ -467,7 +476,6 @@ const MUI: React.FC<MUIProps> = React.forwardRef(
                   fullWidth
                   onClick={() => handleLightContrast()}
                   sx={{
-                    cursor: bigCursor ? 'inherit' : 'pointer',
                     height: '125px',
                     backgroundColor: lightContrast ? '#87B922' : 'white',
                     borderColor: lightContrast ? '#fff' : '#000',
@@ -506,7 +514,6 @@ const MUI: React.FC<MUIProps> = React.forwardRef(
                   fullWidth
                   onClick={() => handleInvertColor()}
                   sx={{
-                    cursor: bigCursor ? 'inherit' : 'pointer',
                     height: '125px',
                     backgroundColor: invertColor ? '#87B922' : 'white',
                     borderColor: invertColor ? '#fff' : '#000',
@@ -545,7 +552,6 @@ const MUI: React.FC<MUIProps> = React.forwardRef(
                   fullWidth
                   onClick={() => handlePageStructureOpening()}
                   sx={{
-                    cursor: bigCursor ? 'inherit' : 'pointer',
                     height: '125px',
                     backgroundColor: isPageStructureOpen ? '#87B922' : 'white',
                     borderColor: isPageStructureOpen ? '#fff' : '#000',
@@ -584,7 +590,6 @@ const MUI: React.FC<MUIProps> = React.forwardRef(
                   fullWidth
                   onClick={() => handleLeftAlign()}
                   sx={{
-                    cursor: bigCursor ? 'inherit' : 'pointer',
                     height: '125px',
                     backgroundColor: shouldLeftAlign ? '#87B922' : 'white',
                     borderColor: shouldLeftAlign ? '#fff' : '#000',
@@ -623,7 +628,6 @@ const MUI: React.FC<MUIProps> = React.forwardRef(
                   fullWidth
                   onClick={() => handleRightAlign()}
                   sx={{
-                    cursor: bigCursor ? 'inherit' : 'pointer',
                     height: '125px',
                     backgroundColor: shouldRightAlign ? '#87B922' : 'white',
                     borderColor: shouldRightAlign ? '#fff' : '#000',
@@ -644,6 +648,120 @@ const MUI: React.FC<MUIProps> = React.forwardRef(
                     </Box>
                     <Box sx={{ height: '30px' }}>
                       <Typography variant="button">Right Align</Typography>
+                    </Box>
+                  </Stack>
+                </Button>
+              </Grid>
+              <Grid
+                container
+                item
+                xs={12}
+                sm={12}
+                md={4}
+                flexDirection="column"
+                alignItems="center"
+              >
+                <Button
+                  variant="outlined"
+                  fullWidth
+                  onClick={() => handleLowSaturation()}
+                  sx={{
+                    height: '125px',
+                    backgroundColor: lowSaturation ? '#87B922' : 'white',
+                    borderColor: lowSaturation ? '#fff' : '#000',
+                    color: lowSaturation ? '#fff' : '#000',
+                    borderRadius: '20px',
+                    padding: 'inherit'
+                  }}
+                  className={`accessibility-button`}
+                >
+                  <Stack
+                    direction="column"
+                    width="100%"
+                    alignItems="center"
+                    gap="2px"
+                  >
+                    <Box sx={{ height: '60px' }}>
+                      <Icon path={mdiInvertColors} size={2} />
+                    </Box>
+                    <Box sx={{ height: '30px' }}>
+                      <Typography variant="button">Low Saturation</Typography>
+                    </Box>
+                  </Stack>
+                </Button>
+              </Grid>
+              <Grid
+                container
+                item
+                xs={12}
+                sm={12}
+                md={4}
+                flexDirection="column"
+                alignItems="center"
+              >
+                <Button
+                  variant="outlined"
+                  fullWidth
+                  onClick={() => handleHighSaturation()}
+                  sx={{
+                    height: '125px',
+                    backgroundColor: highSaturation ? '#87B922' : 'white',
+                    borderColor: highSaturation ? '#fff' : '#000',
+                    color: highSaturation ? '#fff' : '#000',
+                    borderRadius: '20px',
+                    padding: 'inherit'
+                  }}
+                  className={`accessibility-button`}
+                >
+                  <Stack
+                    direction="column"
+                    width="100%"
+                    alignItems="center"
+                    gap="2px"
+                  >
+                    <Box sx={{ height: '60px' }}>
+                      <Icon path={mdiInvertColors} size={2} />
+                    </Box>
+                    <Box sx={{ height: '30px' }}>
+                      <Typography variant="button">High Saturation</Typography>
+                    </Box>
+                  </Stack>
+                </Button>
+              </Grid>
+              <Grid
+                container
+                item
+                xs={12}
+                sm={12}
+                md={4}
+                flexDirection="column"
+                alignItems="center"
+              >
+                <Button
+                  variant="outlined"
+                  fullWidth
+                  onClick={() => handleDesaturation()}
+                  sx={{
+                    height: '125px',
+                    backgroundColor: desaturation ? '#87B922' : 'white',
+                    borderColor: desaturation ? '#fff' : '#000',
+                    color: desaturation ? '#fff' : '#000',
+                    borderRadius: '20px',
+                    padding: 'inherit'
+                  }}
+                  className={`accessibility-button`}
+                >
+                  <Stack
+                    direction="column"
+                    width="100%"
+                    alignItems="center"
+                    gap="2px"
+                  >
+                    <Box sx={{ height: '60px' }}>
+                      <Icon path={mdiInvertColors} size={2} />
+                    </Box>
+                    <Box sx={{ height: '30px' }}>
+                      <Typography variant="button">Desaturate</Typography>
                     </Box>
                   </Stack>
                 </Button>

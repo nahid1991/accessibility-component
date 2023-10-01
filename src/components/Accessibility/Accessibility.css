@@ -96,3 +96,15 @@
 .right-align * {
   text-align: right !important;
 }
+
+.low-saturation * {
+  filter: saturate(0.5) !important;
+}
+
+.high-saturation * {
+  filter: saturate(3) !important;
+}
+
+.desaturation * {
+  filter: saturate(0) !important;
+}

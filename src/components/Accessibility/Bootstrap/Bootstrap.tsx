@@ -52,6 +52,12 @@ interface BootstrapInterface {
   shouldRightAlign?: boolean;
   handleRightAlign?: () => void;
   handleReset?: () => void;
+  lowSaturation?: boolean;
+  highSaturation?: boolean;
+  desaturation?: boolean;
+  handleLowSaturation?: () => void;
+  handleHighSaturation?: () => void;
+  handleDesaturation?: () => void;
 }
 
 const Bootstrap: React.FC<BootstrapInterface> = React.forwardRef(
@@ -89,7 +95,13 @@ const Bootstrap: React.FC<BootstrapInterface> = React.forwardRef(
       handleLeftAlign = () => {},
       shouldRightAlign = false,
       handleRightAlign = () => {},
-      handleReset = () => {}
+      handleReset = () => {},
+      lowSaturation = false,
+      highSaturation = false,
+      desaturation = false,
+      handleLowSaturation = () => {},
+      handleHighSaturation = () => {},
+      handleDesaturation = () => {}
     },
     ref
   ) => {
@@ -151,7 +163,10 @@ const Bootstrap: React.FC<BootstrapInterface> = React.forwardRef(
                         !invertColor &&
                         !isPageStructureOpen &&
                         !shouldLeftAlign &&
-                        !shouldRightAlign
+                        !shouldRightAlign &&
+                        !lowSaturation &&
+                        !highSaturation &&
+                        !desaturation
                       }
                     >Reset</Button>
                   </Col>
@@ -372,7 +387,6 @@ const Bootstrap: React.FC<BootstrapInterface> = React.forwardRef(
                   size="lg"
                   onClick={() => handleInvertColor()}
                   style={{
-                    cursor: bigCursor ? 'inherit' : 'pointer',
                     height: '125px',
                     borderRadius: '20px',
                     padding: 'inherit',
@@ -461,6 +475,81 @@ const Bootstrap: React.FC<BootstrapInterface> = React.forwardRef(
                       </Col>
                       <Col xs={12}>
                         <span>Right Align</span>
+                      </Col>
+                    </Row>
+                  </Container>
+                </Button>
+              </Col>
+              <Col md={4} sm={12}>
+                <Button
+                  className={`accessibility-button mb-1`}
+                  variant={lowSaturation ? 'primary' : 'outline-dark'}
+                  size="lg"
+                  onClick={() => handleLowSaturation()}
+                  style={{
+                    height: '125px',
+                    borderRadius: '20px',
+                    padding: 'inherit',
+                    width: '100%'
+                  }}
+                >
+                  <Container>
+                    <Row>
+                      <Col xs={12} className="mb-3">
+                        <MdInvertColors size={30} />
+                      </Col>
+                      <Col xs={12}>
+                        <span>Low Saturation</span>
+                      </Col>
+                    </Row>
+                  </Container>
+                </Button>
+              </Col>
+              <Col md={4} sm={12}>
+                <Button
+                  className={`accessibility-button mb-1`}
+                  variant={highSaturation ? 'primary' : 'outline-dark'}
+                  size="lg"
+                  onClick={() => handleHighSaturation()}
+                  style={{
+                    height: '125px',
+                    borderRadius: '20px',
+                    padding: 'inherit',
+                    width: '100%'
+                  }}
+                >
+                  <Container>
+                    <Row>
+                      <Col xs={12} className="mb-3">
+                        <MdInvertColors size={30} />
+                      </Col>
+                      <Col xs={12}>
+                        <span>High Saturation</span>
+                      </Col>
+                    </Row>
+                  </Container>
+                </Button>
+              </Col>
+              <Col md={4} sm={12}>
+                <Button
+                  className={`accessibility-button mb-1`}
+                  variant={desaturation ? 'primary' : 'outline-dark'}
+                  size="lg"
+                  onClick={() => handleDesaturation()}
+                  style={{
+                    height: '125px',
+                    borderRadius: '20px',
+                    padding: 'inherit',
+                    width: '100%'
+                  }}
+                >
+                  <Container>
+                    <Row>
+                      <Col xs={12} className="mb-3">
+                        <MdInvertColors size={30} />
+                      </Col>
+                      <Col xs={12}>
+                        <span>Desaturate</span>
                       </Col>
                     </Row>
                   </Container>
