@@ -6,6 +6,7 @@ import Bootstrap from './Bootstrap';
 export interface AccessibilityProps {
   children?: React.ReactNode;
   theme?: string;
+  lang?: string;
 }
 
 export interface HeadingData {
@@ -17,7 +18,8 @@ export interface HeadingData {
 
 const Accessibility: React.FC<AccessibilityProps> = ({
   children,
-  theme = 'mui'
+  theme = 'mui',
+  lang = "en"
 }) => {
   const ref = useRef(null);
   const [bigCursor, setBigCursor] = useState<boolean>(false);
@@ -43,6 +45,7 @@ const Accessibility: React.FC<AccessibilityProps> = ({
   const [lowSaturation, setLowSaturation] = useState<boolean>(false);
   const [highSaturation, setHighSaturation] = useState<boolean>(false);
   const [desaturation, setDesaturation] = useState<boolean>(false);
+  const [languange, setLanguage] = useState<string>(localStorage.getItem("accLang") ?? lang);
 
   useEffect(() => {
     const newClasses: Set<string> = new Set<string>();
@@ -125,6 +128,10 @@ const Accessibility: React.FC<AccessibilityProps> = ({
   useEffect(() => {
     setDesaturation(!!localStorage.getItem('desaturation'));
   }, []);
+
+  useEffect(() => {
+    setLanguage(localStorage.getItem("accLang") ?? lang)
+  }, [lang]);
 
   const handleBigCursorChange = useCallback(() => {
     bigCursor
@@ -444,6 +451,11 @@ const Accessibility: React.FC<AccessibilityProps> = ({
       : bodyClasses.remove('dark-contrast');
   }, [invertColor, darkContrast, lightContrast]);
 
+  const handleSetLanguage = useCallback((language: string) => {
+    setLanguage(language);
+    localStorage.setItem("accLang", language);
+  }, []);
+
   return (
     <>
       {theme === 'bootstrap' ? (
@@ -487,6 +499,7 @@ const Accessibility: React.FC<AccessibilityProps> = ({
           handleLowSaturation={handleLowSaturation}
           handleHighSaturation={handleHighSaturation}
           handleDesaturation={handleDesaturation}
+          language={languange}
         />
       ) : (
         <MUI
@@ -529,6 +542,8 @@ const Accessibility: React.FC<AccessibilityProps> = ({
           handleLowSaturation={handleLowSaturation}
           handleHighSaturation={handleHighSaturation}
           handleDesaturation={handleDesaturation}
+          language={languange}
+          handleSetLanguage={handleSetLanguage}
         />
       )}
     </>

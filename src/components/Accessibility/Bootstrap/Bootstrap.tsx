@@ -15,6 +15,7 @@ import {HeadingData} from "../Accessibility";
 import PageStructure from "../PageStructure/PageStructure";
 import {LiaPagerSolid} from "react-icons/lia";
 import {GrTextAlignLeft, GrTextAlignRight} from "react-icons/gr";
+import {translation} from "../Language";
 
 interface BootstrapInterface {
   children?: React.ReactNode;
@@ -58,6 +59,7 @@ interface BootstrapInterface {
   handleLowSaturation?: () => void;
   handleHighSaturation?: () => void;
   handleDesaturation?: () => void;
+  language?: string;
 }
 
 const Bootstrap: React.FC<BootstrapInterface> = React.forwardRef(
@@ -101,7 +103,8 @@ const Bootstrap: React.FC<BootstrapInterface> = React.forwardRef(
       desaturation = false,
       handleLowSaturation = () => {},
       handleHighSaturation = () => {},
-      handleDesaturation = () => {}
+      handleDesaturation = () => {},
+      language = "en"
     },
     ref
   ) => {
@@ -145,7 +148,7 @@ const Bootstrap: React.FC<BootstrapInterface> = React.forwardRef(
                   <Col md={6} sm={12} style={{
                     textAlign: "left"
                   }}>
-                    <span>Accessibility Menu</span>
+                    <span>{translation[language].accessibilityMenu}</span>
                   </Col>
                   <Col md={6} sm={12} style={{
                     textAlign: "right"
@@ -168,7 +171,7 @@ const Bootstrap: React.FC<BootstrapInterface> = React.forwardRef(
                         !highSaturation &&
                         !desaturation
                       }
-                    >Reset</Button>
+                    >{translation[language].reset}</Button>
                   </Col>
                 </Row>
               </Col>
@@ -192,7 +195,7 @@ const Bootstrap: React.FC<BootstrapInterface> = React.forwardRef(
                         <FaMousePointer size={30} />
                       </Col>
                       <Col xs={12}>
-                        <span>Big Cursor</span>
+                        <span>{translation[language].bigCursor}</span>
                       </Col>
                     </Row>
                   </Container>
@@ -218,7 +221,7 @@ const Bootstrap: React.FC<BootstrapInterface> = React.forwardRef(
                         <MdOutlineSplitscreen size={30} />
                       </Col>
                       <Col xs={12}>
-                        <span>Reading Mask</span>
+                        <span>{translation[language].readingMask}</span>
                       </Col>
                     </Row>
                   </Container>
@@ -244,7 +247,7 @@ const Bootstrap: React.FC<BootstrapInterface> = React.forwardRef(
                         <LuImageOff size={30} />
                       </Col>
                       <Col xs={12}>
-                        <span>Hide Image</span>
+                        <span>{translation[language].hideMask}</span>
                       </Col>
                     </Row>
                   </Container>
@@ -270,7 +273,7 @@ const Bootstrap: React.FC<BootstrapInterface> = React.forwardRef(
                         <FaLink size={30} />
                       </Col>
                       <Col xs={12}>
-                        <span>Highlight Link</span>
+                        <span>{translation[language].highlightLink}</span>
                       </Col>
                     </Row>
                   </Container>
@@ -296,7 +299,7 @@ const Bootstrap: React.FC<BootstrapInterface> = React.forwardRef(
                         <FaArrowsAltH size={30} />
                       </Col>
                       <Col xs={12}>
-                        <span>Increase Letter Space</span>
+                        <span>{translation[language].increaseLetterSpace}</span>
                       </Col>
                     </Row>
                   </Container>
@@ -322,7 +325,7 @@ const Bootstrap: React.FC<BootstrapInterface> = React.forwardRef(
                         <FaArrowsAltV size={30} />
                       </Col>
                       <Col xs={12}>
-                        <span>Increase Line Height</span>
+                        <span>{translation[language].increaseLineHeight}</span>
                       </Col>
                     </Row>
                   </Container>
@@ -348,7 +351,7 @@ const Bootstrap: React.FC<BootstrapInterface> = React.forwardRef(
                         <ImContrast size={30} />
                       </Col>
                       <Col xs={12}>
-                        <span>Dark Contrast</span>
+                        <span>{translation[language].darkContrast}</span>
                       </Col>
                     </Row>
                   </Container>
@@ -374,7 +377,7 @@ const Bootstrap: React.FC<BootstrapInterface> = React.forwardRef(
                         <ImContrast size={30} />
                       </Col>
                       <Col xs={12}>
-                        <span>Light Contrast</span>
+                        <span>{translation[language].lightContrast}</span>
                       </Col>
                     </Row>
                   </Container>
@@ -399,7 +402,7 @@ const Bootstrap: React.FC<BootstrapInterface> = React.forwardRef(
                         <MdInvertColors size={30} />
                       </Col>
                       <Col xs={12}>
-                        <span>Invert Color</span>
+                        <span>{translation[language].invertColor}</span>
                       </Col>
                     </Row>
                   </Container>
@@ -424,7 +427,7 @@ const Bootstrap: React.FC<BootstrapInterface> = React.forwardRef(
                         <LiaPagerSolid size={30} />
                       </Col>
                       <Col xs={12}>
-                        <span>Page Structure</span>
+                        <span>{translation[language].pageStructure}</span>
                       </Col>
                     </Row>
                   </Container>
@@ -449,7 +452,7 @@ const Bootstrap: React.FC<BootstrapInterface> = React.forwardRef(
                         <GrTextAlignLeft size={30} />
                       </Col>
                       <Col xs={12}>
-                        <span>Left Align</span>
+                        <span>{translation[language].leftAlign}</span>
                       </Col>
                     </Row>
                   </Container>
@@ -474,7 +477,7 @@ const Bootstrap: React.FC<BootstrapInterface> = React.forwardRef(
                         <GrTextAlignRight size={30} />
                       </Col>
                       <Col xs={12}>
-                        <span>Right Align</span>
+                        <span>{translation[language].rightAlign}</span>
                       </Col>
                     </Row>
                   </Container>
@@ -499,7 +502,7 @@ const Bootstrap: React.FC<BootstrapInterface> = React.forwardRef(
                         <MdInvertColors size={30} />
                       </Col>
                       <Col xs={12}>
-                        <span>Low Saturation</span>
+                        <span>{translation[language].lowSaturation}</span>
                       </Col>
                     </Row>
                   </Container>
@@ -524,7 +527,7 @@ const Bootstrap: React.FC<BootstrapInterface> = React.forwardRef(
                         <MdInvertColors size={30} />
                       </Col>
                       <Col xs={12}>
-                        <span>High Saturation</span>
+                        <span>{translation[language].hightSaturation}</span>
                       </Col>
                     </Row>
                   </Container>
@@ -549,7 +552,7 @@ const Bootstrap: React.FC<BootstrapInterface> = React.forwardRef(
                         <MdInvertColors size={30} />
                       </Col>
                       <Col xs={12}>
-                        <span>Desaturate</span>
+                        <span>{translation[language].desaturate}</span>
                       </Col>
                     </Row>
                   </Container>
@@ -577,6 +580,7 @@ const Bootstrap: React.FC<BootstrapInterface> = React.forwardRef(
           links={links}
           headings={headings}
           onClose={handlePageStructureOpening}
+          language={language}
         />
       </Container>
     );

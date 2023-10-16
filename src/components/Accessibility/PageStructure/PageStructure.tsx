@@ -10,17 +10,21 @@ import {
 } from '@mui/material';
 import { HeadingData } from '../Accessibility';
 import HeadingTree from './HeadingTree';
+import { translation } from "../Language";
+
 export interface PageStructureProps {
   isOpen?: boolean;
   links?: { href: string; text: string }[];
   headings?: HeadingData[];
   onClose?: () => void;
+  language?: string;
+  bigCursor?: boolean;
 }
 
 interface TabPanelProps {
   children?: React.ReactNode;
-  index: number;
-  value: number;
+  index?: number;
+  value?: number;
 }
 
 function TabPanel({ children, value, index }: TabPanelProps) {
@@ -33,7 +37,9 @@ const PageStructure: React.FC<PageStructureProps> = ({
   isOpen = false,
   links = [],
   headings = [],
-  onClose = () => {}
+  onClose = () => {},
+  language = "en",
+  bigCursor = false
 }) => {
   const [value, setValue] = useState(0);
 
@@ -46,15 +52,15 @@ const PageStructure: React.FC<PageStructureProps> = ({
 
   return (
     <Dialog open={isOpen} onClose={onClose}>
-      <DialogContent sx={{ minWidth: '500px', minHeight: '60vh' }}>
+      <DialogContent sx={{ minWidth: '500px', minHeight: '60vh' }} className={bigCursor ? "cursor": ""}>
         <Box sx={{ width: '100%' }}>
           <Tabs
             value={value}
             onChange={handleChange}
             sx={{ marginBottom: '10px' }}
           >
-            <Tab label="Links" />
-            <Tab label="Headings" />
+            <Tab label={translation[language].links} />
+            <Tab label={translation[language].headings} />
           </Tabs>
           <TabPanel value={value} index={0}>
             <List>

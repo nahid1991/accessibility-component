@@ -1,7 +1,7 @@
 import React from 'react';
 import Icon from '@mdi/react';
 import ReadingMask from '../ReadingMask';
-import { Box, Button, Grid, Stack, Typography } from '@mui/material';
+import {Box, Button, Grid, Stack, Typography} from '@mui/material';
 import {
   mdiArrowLeftRightBoldOutline,
   mdiArrowUpDownBoldOutline,
@@ -18,6 +18,7 @@ import {
 } from '@mdi/js';
 import PageStructure from '../PageStructure/PageStructure';
 import { HeadingData } from '../Accessibility';
+import { translation } from "../Language";
 
 export interface MUIProps {
   children?: React.ReactNode;
@@ -61,6 +62,8 @@ export interface MUIProps {
   handleLowSaturation?: () => void;
   handleHighSaturation?: () => void;
   handleDesaturation?: () => void;
+  language?: string;
+  handleSetLanguage?: (language: string) => void;
 }
 
 const MUI: React.FC<MUIProps> = React.forwardRef(
@@ -104,7 +107,9 @@ const MUI: React.FC<MUIProps> = React.forwardRef(
       desaturation = false,
       handleLowSaturation = () => {},
       handleHighSaturation = () => {},
-      handleDesaturation = () => {}
+      handleDesaturation = () => {},
+      language = "en",
+      handleSetLanguage = (language: string) => {}
     },
     ref
   ) => {
@@ -160,7 +165,7 @@ const MUI: React.FC<MUIProps> = React.forwardRef(
                   }}
                 >
                   <Typography variant="caption">
-                    Accessibility Menu
+                    {translation[language].accessibilityMenu}
                   </Typography>
                 </Grid>
                 <Grid
@@ -188,10 +193,27 @@ const MUI: React.FC<MUIProps> = React.forwardRef(
                     fullWidth
                     onClick={() => handleReset()}
                   >
-                    Reset
+                    {translation[language].reset}
                   </Button>
                 </Grid>
               </Grid>
+              {/*<Grid container item xs={12}>*/}
+              {/*  <Accordion>*/}
+              {/*    <AccordionSummary*/}
+              {/*      expandIcon={<ExpandMoreIcon />}*/}
+              {/*      aria-controls="panel2a-content"*/}
+              {/*      id="panel2a-header"*/}
+              {/*    >*/}
+              {/*      <Typography>Accordion 2</Typography>*/}
+              {/*    </AccordionSummary>*/}
+              {/*    <AccordionDetails>*/}
+              {/*      <Typography>*/}
+              {/*        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse*/}
+              {/*        malesuada lacus ex, sit amet blandit leo lobortis eget.*/}
+              {/*      </Typography>*/}
+              {/*    </AccordionDetails>*/}
+              {/*  </Accordion>*/}
+              {/*</Grid>*/}
               <Grid
                 container
                 item
@@ -225,7 +247,7 @@ const MUI: React.FC<MUIProps> = React.forwardRef(
                       <Icon path={mdiCursorDefaultOutline} size={2} />
                     </Box>
                     <Box sx={{ height: '30px' }}>
-                      <Typography variant="button">Big Cursor</Typography>
+                      <Typography variant="button">{translation[language].bigCursor}</Typography>
                     </Box>
                   </Stack>
                 </Button>
@@ -263,7 +285,7 @@ const MUI: React.FC<MUIProps> = React.forwardRef(
                       <Icon path={mdiMinusBoxOutline} size={2} />
                     </Box>
                     <Box sx={{ height: '30px' }}>
-                      <Typography variant="button">Reading Mask</Typography>
+                      <Typography variant="button">{translation[language].readingMask}</Typography>
                     </Box>
                   </Stack>
                 </Button>
@@ -301,7 +323,7 @@ const MUI: React.FC<MUIProps> = React.forwardRef(
                       <Icon path={mdiLinkBoxOutline} size={2} />
                     </Box>
                     <Box sx={{ height: '30px' }}>
-                      <Typography variant="button">Highlight Link</Typography>
+                      <Typography variant="button">{translation[language].highlightLink}</Typography>
                     </Box>
                   </Stack>
                 </Button>
@@ -339,7 +361,7 @@ const MUI: React.FC<MUIProps> = React.forwardRef(
                       <Icon path={mdiImageOffOutline} size={2} />
                     </Box>
                     <Box sx={{ height: '30px' }}>
-                      <Typography variant="button">Hide Image</Typography>
+                      <Typography variant="button">{translation[language].hideImage}</Typography>
                     </Box>
                   </Stack>
                 </Button>
@@ -378,7 +400,7 @@ const MUI: React.FC<MUIProps> = React.forwardRef(
                     </Box>
                     <Box sx={{ height: '30px' }}>
                       <Typography variant="button">
-                        Increase Letter Space
+                        {translation[language].increaseLetterSpace}
                       </Typography>
                     </Box>
                   </Stack>
@@ -418,7 +440,7 @@ const MUI: React.FC<MUIProps> = React.forwardRef(
                     </Box>
                     <Box sx={{ height: '30px' }}>
                       <Typography variant="button">
-                        Increase Line Height
+                        {translation[language].increaseLineHeight}
                       </Typography>
                     </Box>
                   </Stack>
@@ -457,7 +479,7 @@ const MUI: React.FC<MUIProps> = React.forwardRef(
                       <Icon path={mdiContrastCircle} size={2} />
                     </Box>
                     <Box sx={{ height: '30px' }}>
-                      <Typography variant="button">Dark Contrast</Typography>
+                      <Typography variant="button">{translation[language].darkContrast}</Typography>
                     </Box>
                   </Stack>
                 </Button>
@@ -495,7 +517,7 @@ const MUI: React.FC<MUIProps> = React.forwardRef(
                       <Icon path={mdiContrastCircle} size={2} />
                     </Box>
                     <Box sx={{ height: '30px' }}>
-                      <Typography variant="button">Light Contrast</Typography>
+                      <Typography variant="button">{translation[language].lightContrast}</Typography>
                     </Box>
                   </Stack>
                 </Button>
@@ -533,7 +555,7 @@ const MUI: React.FC<MUIProps> = React.forwardRef(
                       <Icon path={mdiInvertColors} size={2} />
                     </Box>
                     <Box sx={{ height: '30px' }}>
-                      <Typography variant="button">Invert Color</Typography>
+                      <Typography variant="button">{translation[language].invertColor}</Typography>
                     </Box>
                   </Stack>
                 </Button>
@@ -571,7 +593,7 @@ const MUI: React.FC<MUIProps> = React.forwardRef(
                       <Icon path={mdiPageNextOutline} size={2} />
                     </Box>
                     <Box sx={{ height: '30px' }}>
-                      <Typography variant="button">Page Structure</Typography>
+                      <Typography variant="button">{translation[language].pageStructure}</Typography>
                     </Box>
                   </Stack>
                 </Button>
@@ -609,7 +631,7 @@ const MUI: React.FC<MUIProps> = React.forwardRef(
                       <Icon path={mdiReceiptTextArrowLeftOutline} size={2} />
                     </Box>
                     <Box sx={{ height: '30px' }}>
-                      <Typography variant="button">Left Align</Typography>
+                      <Typography variant="button">{translation[language].leftAlign}</Typography>
                     </Box>
                   </Stack>
                 </Button>
@@ -647,7 +669,7 @@ const MUI: React.FC<MUIProps> = React.forwardRef(
                       <Icon path={mdiReceiptTextArrowRightOutline} size={2} />
                     </Box>
                     <Box sx={{ height: '30px' }}>
-                      <Typography variant="button">Right Align</Typography>
+                      <Typography variant="button">{translation[language].rightAlign}</Typography>
                     </Box>
                   </Stack>
                 </Button>
@@ -685,7 +707,7 @@ const MUI: React.FC<MUIProps> = React.forwardRef(
                       <Icon path={mdiInvertColors} size={2} />
                     </Box>
                     <Box sx={{ height: '30px' }}>
-                      <Typography variant="button">Low Saturation</Typography>
+                      <Typography variant="button">{translation[language].lowSaturation}</Typography>
                     </Box>
                   </Stack>
                 </Button>
@@ -723,7 +745,7 @@ const MUI: React.FC<MUIProps> = React.forwardRef(
                       <Icon path={mdiInvertColors} size={2} />
                     </Box>
                     <Box sx={{ height: '30px' }}>
-                      <Typography variant="button">High Saturation</Typography>
+                      <Typography variant="button">{translation[language].highSaturation}</Typography>
                     </Box>
                   </Stack>
                 </Button>
@@ -761,7 +783,7 @@ const MUI: React.FC<MUIProps> = React.forwardRef(
                       <Icon path={mdiInvertColors} size={2} />
                     </Box>
                     <Box sx={{ height: '30px' }}>
-                      <Typography variant="button">Desaturate</Typography>
+                      <Typography variant="button">{translation[language].desaturate}</Typography>
                     </Box>
                   </Stack>
                 </Button>
@@ -788,6 +810,8 @@ const MUI: React.FC<MUIProps> = React.forwardRef(
           links={links}
           headings={headings}
           onClose={handlePageStructureOpening}
+          language={language}
+          bigCursor={bigCursor}
         />
       </Box>
     );
