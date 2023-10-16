@@ -7,6 +7,7 @@ export interface AccessibilityProps {
   children?: React.ReactNode;
   theme?: string;
   lang?: string;
+  excludedFeatures?: string[]
 }
 
 export interface HeadingData {
@@ -19,7 +20,8 @@ export interface HeadingData {
 const Accessibility: React.FC<AccessibilityProps> = ({
   children,
   theme = 'mui',
-  lang = "en"
+  lang = "en",
+  excludedFeatures = []
 }) => {
   const ref = useRef(null);
   const [bigCursor, setBigCursor] = useState<boolean>(false);
@@ -500,6 +502,7 @@ const Accessibility: React.FC<AccessibilityProps> = ({
           handleHighSaturation={handleHighSaturation}
           handleDesaturation={handleDesaturation}
           language={lang}
+          excludedFeatures={excludedFeatures}
         />
       ) : (
         <MUI
@@ -543,6 +546,7 @@ const Accessibility: React.FC<AccessibilityProps> = ({
           handleHighSaturation={handleHighSaturation}
           handleDesaturation={handleDesaturation}
           language={lang}
+          excludedFeatures={excludedFeatures}
         />
       )}
     </>

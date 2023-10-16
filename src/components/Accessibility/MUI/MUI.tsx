@@ -19,6 +19,7 @@ import {
 import PageStructure from '../PageStructure/PageStructure';
 import { HeadingData } from '../Accessibility';
 import { translation } from "../Language";
+import {Features} from "../Features";
 
 export interface MUIProps {
   children?: React.ReactNode;
@@ -63,6 +64,7 @@ export interface MUIProps {
   handleHighSaturation?: () => void;
   handleDesaturation?: () => void;
   language?: string;
+  excludedFeatures?: string[];
 }
 
 const MUI: React.FC<MUIProps> = React.forwardRef(
@@ -107,7 +109,8 @@ const MUI: React.FC<MUIProps> = React.forwardRef(
       handleLowSaturation = () => {},
       handleHighSaturation = () => {},
       handleDesaturation = () => {},
-      language = "en"
+      language = "en",
+      excludedFeatures = []
     },
     ref
   ) => {
@@ -212,580 +215,639 @@ const MUI: React.FC<MUIProps> = React.forwardRef(
               {/*    </AccordionDetails>*/}
               {/*  </Accordion>*/}
               {/*</Grid>*/}
-              <Grid
-                container
-                item
-                xs={12}
-                sm={12}
-                md={4}
-                flexDirection="column"
-                alignItems="center"
-              >
-                <Button
-                  variant="outlined"
-                  fullWidth
-                  onClick={() => handleBigCursorChange()}
-                  sx={{
-                    height: '125px',
-                    backgroundColor: bigCursor ? '#87B922' : 'white',
-                    borderColor: bigCursor ? '#fff' : '#000',
-                    color: bigCursor ? '#fff' : '#000',
-                    borderRadius: '20px',
-                    padding: 'inherit'
-                  }}
-                  className={`accessibility-button`}
+              {
+                !excludedFeatures.includes(Features.BIG_CURSOR) && (<Grid
+                  container
+                  item
+                  xs={12}
+                  sm={12}
+                  md={4}
+                  flexDirection="column"
+                  alignItems="center"
                 >
-                  <Stack
-                    direction="column"
-                    width="100%"
-                    alignItems="center"
-                    gap="2px"
+                  <Button
+                    variant="outlined"
+                    fullWidth
+                    onClick={() => handleBigCursorChange()}
+                    sx={{
+                      height: '125px',
+                      backgroundColor: bigCursor ? '#87B922' : 'white',
+                      borderColor: bigCursor ? '#fff' : '#000',
+                      color: bigCursor ? '#fff' : '#000',
+                      borderRadius: '20px',
+                      padding: 'inherit'
+                    }}
+                    className={`accessibility-button`}
                   >
-                    <Box sx={{ height: '60px' }}>
-                      <Icon path={mdiCursorDefaultOutline} size={2} />
-                    </Box>
-                    <Box sx={{ height: '30px' }}>
-                      <Typography variant="button">{translation[language].bigCursor}</Typography>
-                    </Box>
-                  </Stack>
-                </Button>
-              </Grid>
-              <Grid
-                container
-                item
-                xs={12}
-                sm={12}
-                md={4}
-                flexDirection="column"
-                alignItems="center"
-              >
-                <Button
-                  variant="outlined"
-                  fullWidth
-                  onClick={() => handleReadingMask()}
-                  sx={{
-                    height: '125px',
-                    backgroundColor: readingMask ? '#87B922' : 'white',
-                    borderColor: readingMask ? '#fff' : '#000',
-                    color: readingMask ? '#fff' : '#000',
-                    borderRadius: '20px',
-                    padding: 'inherit'
-                  }}
-                  className={`accessibility-button`}
-                >
-                  <Stack
-                    direction="column"
-                    width="100%"
+                    <Stack
+                      direction="column"
+                      width="100%"
+                      alignItems="center"
+                      gap="2px"
+                    >
+                      <Box sx={{ height: '60px' }}>
+                        <Icon path={mdiCursorDefaultOutline} size={2} />
+                      </Box>
+                      <Box sx={{ height: '30px' }}>
+                        <Typography variant="button">{translation[language].bigCursor}</Typography>
+                      </Box>
+                    </Stack>
+                  </Button>
+                </Grid>)
+              }
+
+              {
+                !excludedFeatures.includes(Features.READING_MASK) && (
+                  <Grid
+                    container
+                    item
+                    xs={12}
+                    sm={12}
+                    md={4}
+                    flexDirection="column"
                     alignItems="center"
-                    gap="3px"
                   >
-                    <Box sx={{ height: '60px' }}>
-                      <Icon path={mdiMinusBoxOutline} size={2} />
-                    </Box>
-                    <Box sx={{ height: '30px' }}>
-                      <Typography variant="button">{translation[language].readingMask}</Typography>
-                    </Box>
-                  </Stack>
-                </Button>
-              </Grid>
-              <Grid
-                container
-                item
-                xs={12}
-                sm={12}
-                md={4}
-                flexDirection="column"
-                alignItems="center"
-              >
-                <Button
-                  variant="outlined"
-                  fullWidth
-                  onClick={() => handleLinkHighlightingChange()}
-                  sx={{
-                    height: '125px',
-                    backgroundColor: highlightLink ? '#87B922' : 'white',
-                    borderColor: highlightLink ? '#fff' : '#000',
-                    color: highlightLink ? '#fff' : '#000',
-                    borderRadius: '20px',
-                    padding: 'inherit'
-                  }}
-                  className={`accessibility-button`}
-                >
-                  <Stack
-                    direction="column"
-                    width="100%"
+                    <Button
+                      variant="outlined"
+                      fullWidth
+                      onClick={() => handleReadingMask()}
+                      sx={{
+                        height: '125px',
+                        backgroundColor: readingMask ? '#87B922' : 'white',
+                        borderColor: readingMask ? '#fff' : '#000',
+                        color: readingMask ? '#fff' : '#000',
+                        borderRadius: '20px',
+                        padding: 'inherit'
+                      }}
+                      className={`accessibility-button`}
+                    >
+                      <Stack
+                        direction="column"
+                        width="100%"
+                        alignItems="center"
+                        gap="3px"
+                      >
+                        <Box sx={{ height: '60px' }}>
+                          <Icon path={mdiMinusBoxOutline} size={2} />
+                        </Box>
+                        <Box sx={{ height: '30px' }}>
+                          <Typography variant="button">{translation[language].readingMask}</Typography>
+                        </Box>
+                      </Stack>
+                    </Button>
+                  </Grid>
+                )
+              }
+              {
+                !excludedFeatures.includes(Features.HIGHLIGHT_LINK) && (
+                  <Grid
+                    container
+                    item
+                    xs={12}
+                    sm={12}
+                    md={4}
+                    flexDirection="column"
                     alignItems="center"
-                    gap="2px"
                   >
-                    <Box sx={{ height: '60px' }}>
-                      <Icon path={mdiLinkBoxOutline} size={2} />
-                    </Box>
-                    <Box sx={{ height: '30px' }}>
-                      <Typography variant="button">{translation[language].highlightLink}</Typography>
-                    </Box>
-                  </Stack>
-                </Button>
-              </Grid>
-              <Grid
-                container
-                item
-                xs={12}
-                sm={12}
-                md={4}
-                flexDirection="column"
-                alignItems="center"
-              >
-                <Button
-                  variant="outlined"
-                  fullWidth
-                  onClick={() => handleHideImage()}
-                  sx={{
-                    height: '125px',
-                    backgroundColor: hideImage ? '#87B922' : 'white',
-                    borderColor: hideImage ? '#fff' : '#000',
-                    color: hideImage ? '#fff' : '#000',
-                    borderRadius: '20px',
-                    padding: 'inherit'
-                  }}
-                  className={`accessibility-button`}
-                >
-                  <Stack
-                    direction="column"
-                    width="100%"
+                    <Button
+                      variant="outlined"
+                      fullWidth
+                      onClick={() => handleLinkHighlightingChange()}
+                      sx={{
+                        height: '125px',
+                        backgroundColor: highlightLink ? '#87B922' : 'white',
+                        borderColor: highlightLink ? '#fff' : '#000',
+                        color: highlightLink ? '#fff' : '#000',
+                        borderRadius: '20px',
+                        padding: 'inherit'
+                      }}
+                      className={`accessibility-button`}
+                    >
+                      <Stack
+                        direction="column"
+                        width="100%"
+                        alignItems="center"
+                        gap="2px"
+                      >
+                        <Box sx={{ height: '60px' }}>
+                          <Icon path={mdiLinkBoxOutline} size={2} />
+                        </Box>
+                        <Box sx={{ height: '30px' }}>
+                          <Typography variant="button">{translation[language].highlightLink}</Typography>
+                        </Box>
+                      </Stack>
+                    </Button>
+                  </Grid>
+                )
+              }
+              {
+                !excludedFeatures.includes(Features.HIDE_IMAGE) && (
+                  <Grid
+                    container
+                    item
+                    xs={12}
+                    sm={12}
+                    md={4}
+                    flexDirection="column"
                     alignItems="center"
-                    gap="2px"
                   >
-                    <Box sx={{ height: '60px' }}>
-                      <Icon path={mdiImageOffOutline} size={2} />
-                    </Box>
-                    <Box sx={{ height: '30px' }}>
-                      <Typography variant="button">{translation[language].hideImage}</Typography>
-                    </Box>
-                  </Stack>
-                </Button>
-              </Grid>
-              <Grid
-                container
-                item
-                xs={12}
-                sm={12}
-                md={4}
-                flexDirection="column"
-                alignItems="center"
-              >
-                <Button
-                  variant="outlined"
-                  fullWidth
-                  onClick={() => handleLetterSpace()}
-                  sx={{
-                    height: '125px',
-                    backgroundColor: increasedLetterSpace ? '#87B922' : 'white',
-                    borderColor: increasedLetterSpace ? '#fff' : '#000',
-                    color: increasedLetterSpace ? '#fff' : '#000',
-                    borderRadius: '20px',
-                    padding: 'inherit'
-                  }}
-                  className={`accessibility-button`}
-                >
-                  <Stack
-                    direction="column"
-                    width="100%"
+                    <Button
+                      variant="outlined"
+                      fullWidth
+                      onClick={() => handleHideImage()}
+                      sx={{
+                        height: '125px',
+                        backgroundColor: hideImage ? '#87B922' : 'white',
+                        borderColor: hideImage ? '#fff' : '#000',
+                        color: hideImage ? '#fff' : '#000',
+                        borderRadius: '20px',
+                        padding: 'inherit'
+                      }}
+                      className={`accessibility-button`}
+                    >
+                      <Stack
+                        direction="column"
+                        width="100%"
+                        alignItems="center"
+                        gap="2px"
+                      >
+                        <Box sx={{ height: '60px' }}>
+                          <Icon path={mdiImageOffOutline} size={2} />
+                        </Box>
+                        <Box sx={{ height: '30px' }}>
+                          <Typography variant="button">{translation[language].hideImage}</Typography>
+                        </Box>
+                      </Stack>
+                    </Button>
+                  </Grid>
+                )
+              }
+              {
+                !excludedFeatures.includes(Features.INCREASE_LETTER_SPACE) && (
+                  <Grid
+                    container
+                    item
+                    xs={12}
+                    sm={12}
+                    md={4}
+                    flexDirection="column"
                     alignItems="center"
-                    gap="2px"
                   >
-                    <Box sx={{ height: '60px' }}>
-                      <Icon path={mdiArrowLeftRightBoldOutline} size={2} />
-                    </Box>
-                    <Box sx={{ height: '30px' }}>
-                      <Typography variant="button">
-                        {translation[language].increaseLetterSpace}
-                      </Typography>
-                    </Box>
-                  </Stack>
-                </Button>
-              </Grid>
-              <Grid
-                container
-                item
-                xs={12}
-                sm={12}
-                md={4}
-                flexDirection="column"
-                alignItems="center"
-              >
-                <Button
-                  variant="outlined"
-                  fullWidth
-                  onClick={() => handleLineHeight()}
-                  sx={{
-                    height: '125px',
-                    backgroundColor: increasedLineHeight ? '#87B922' : 'white',
-                    borderColor: increasedLineHeight ? '#fff' : '#000',
-                    color: increasedLineHeight ? '#fff' : '#000',
-                    borderRadius: '20px',
-                    padding: 'inherit'
-                  }}
-                  className={`accessibility-button`}
-                >
-                  <Stack
-                    direction="column"
-                    width="100%"
+                    <Button
+                      variant="outlined"
+                      fullWidth
+                      onClick={() => handleLetterSpace()}
+                      sx={{
+                        height: '125px',
+                        backgroundColor: increasedLetterSpace ? '#87B922' : 'white',
+                        borderColor: increasedLetterSpace ? '#fff' : '#000',
+                        color: increasedLetterSpace ? '#fff' : '#000',
+                        borderRadius: '20px',
+                        padding: 'inherit'
+                      }}
+                      className={`accessibility-button`}
+                    >
+                      <Stack
+                        direction="column"
+                        width="100%"
+                        alignItems="center"
+                        gap="2px"
+                      >
+                        <Box sx={{ height: '60px' }}>
+                          <Icon path={mdiArrowLeftRightBoldOutline} size={2} />
+                        </Box>
+                        <Box sx={{ height: '30px' }}>
+                          <Typography variant="button">
+                            {translation[language].increaseLetterSpace}
+                          </Typography>
+                        </Box>
+                      </Stack>
+                    </Button>
+                  </Grid>
+                )
+              }
+              {
+                !excludedFeatures.includes(Features.INCREASE_LINE_HEIGHT) && (
+                  <Grid
+                    container
+                    item
+                    xs={12}
+                    sm={12}
+                    md={4}
+                    flexDirection="column"
                     alignItems="center"
-                    gap="2px"
                   >
-                    <Box sx={{ height: '60px' }}>
-                      <Icon path={mdiArrowUpDownBoldOutline} size={2} />
-                    </Box>
-                    <Box sx={{ height: '30px' }}>
-                      <Typography variant="button">
-                        {translation[language].increaseLineHeight}
-                      </Typography>
-                    </Box>
-                  </Stack>
-                </Button>
-              </Grid>
-              <Grid
-                container
-                item
-                xs={12}
-                sm={12}
-                md={4}
-                flexDirection="column"
-                alignItems="center"
-              >
-                <Button
-                  variant="outlined"
-                  fullWidth
-                  onClick={() => handleDarkContrast()}
-                  sx={{
-                    height: '125px',
-                    backgroundColor: darkContrast ? '#87B922' : 'white',
-                    borderColor: darkContrast ? '#fff' : '#000',
-                    color: darkContrast ? '#fff' : '#000',
-                    borderRadius: '20px',
-                    padding: 'inherit'
-                  }}
-                  className={`accessibility-button`}
-                >
-                  <Stack
-                    direction="column"
-                    width="100%"
+                    <Button
+                      variant="outlined"
+                      fullWidth
+                      onClick={() => handleLineHeight()}
+                      sx={{
+                        height: '125px',
+                        backgroundColor: increasedLineHeight ? '#87B922' : 'white',
+                        borderColor: increasedLineHeight ? '#fff' : '#000',
+                        color: increasedLineHeight ? '#fff' : '#000',
+                        borderRadius: '20px',
+                        padding: 'inherit'
+                      }}
+                      className={`accessibility-button`}
+                    >
+                      <Stack
+                        direction="column"
+                        width="100%"
+                        alignItems="center"
+                        gap="2px"
+                      >
+                        <Box sx={{ height: '60px' }}>
+                          <Icon path={mdiArrowUpDownBoldOutline} size={2} />
+                        </Box>
+                        <Box sx={{ height: '30px' }}>
+                          <Typography variant="button">
+                            {translation[language].increaseLineHeight}
+                          </Typography>
+                        </Box>
+                      </Stack>
+                    </Button>
+                  </Grid>
+                )
+              }
+              {
+                !excludedFeatures.includes(Features.DARK_CONTRAST) && (
+                  <Grid
+                    container
+                    item
+                    xs={12}
+                    sm={12}
+                    md={4}
+                    flexDirection="column"
                     alignItems="center"
-                    gap="2px"
                   >
-                    <Box sx={{ height: '60px' }}>
-                      <Icon path={mdiContrastCircle} size={2} />
-                    </Box>
-                    <Box sx={{ height: '30px' }}>
-                      <Typography variant="button">{translation[language].darkContrast}</Typography>
-                    </Box>
-                  </Stack>
-                </Button>
-              </Grid>
-              <Grid
-                container
-                item
-                xs={12}
-                sm={12}
-                md={4}
-                flexDirection="column"
-                alignItems="center"
-              >
-                <Button
-                  variant="outlined"
-                  fullWidth
-                  onClick={() => handleLightContrast()}
-                  sx={{
-                    height: '125px',
-                    backgroundColor: lightContrast ? '#87B922' : 'white',
-                    borderColor: lightContrast ? '#fff' : '#000',
-                    color: lightContrast ? '#fff' : '#000',
-                    borderRadius: '20px',
-                    padding: 'inherit'
-                  }}
-                  className={`accessibility-button`}
-                >
-                  <Stack
-                    direction="column"
-                    width="100%"
+                    <Button
+                      variant="outlined"
+                      fullWidth
+                      onClick={() => handleDarkContrast()}
+                      sx={{
+                        height: '125px',
+                        backgroundColor: darkContrast ? '#87B922' : 'white',
+                        borderColor: darkContrast ? '#fff' : '#000',
+                        color: darkContrast ? '#fff' : '#000',
+                        borderRadius: '20px',
+                        padding: 'inherit'
+                      }}
+                      className={`accessibility-button`}
+                    >
+                      <Stack
+                        direction="column"
+                        width="100%"
+                        alignItems="center"
+                        gap="2px"
+                      >
+                        <Box sx={{ height: '60px' }}>
+                          <Icon path={mdiContrastCircle} size={2} />
+                        </Box>
+                        <Box sx={{ height: '30px' }}>
+                          <Typography variant="button">{translation[language].darkContrast}</Typography>
+                        </Box>
+                      </Stack>
+                    </Button>
+                  </Grid>
+                )
+              }
+              {
+                !excludedFeatures.includes(Features.LIGHT_CONTRAST) && (
+                  <Grid
+                    container
+                    item
+                    xs={12}
+                    sm={12}
+                    md={4}
+                    flexDirection="column"
                     alignItems="center"
-                    gap="2px"
                   >
-                    <Box sx={{ height: '60px' }}>
-                      <Icon path={mdiContrastCircle} size={2} />
-                    </Box>
-                    <Box sx={{ height: '30px' }}>
-                      <Typography variant="button">{translation[language].lightContrast}</Typography>
-                    </Box>
-                  </Stack>
-                </Button>
-              </Grid>
-              <Grid
-                container
-                item
-                xs={12}
-                sm={12}
-                md={4}
-                flexDirection="column"
-                alignItems="center"
-              >
-                <Button
-                  variant="outlined"
-                  fullWidth
-                  onClick={() => handleInvertColor()}
-                  sx={{
-                    height: '125px',
-                    backgroundColor: invertColor ? '#87B922' : 'white',
-                    borderColor: invertColor ? '#fff' : '#000',
-                    color: invertColor ? '#fff' : '#000',
-                    borderRadius: '20px',
-                    padding: 'inherit'
-                  }}
-                  className={`accessibility-button`}
-                >
-                  <Stack
-                    direction="column"
-                    width="100%"
+                    <Button
+                      variant="outlined"
+                      fullWidth
+                      onClick={() => handleLightContrast()}
+                      sx={{
+                        height: '125px',
+                        backgroundColor: lightContrast ? '#87B922' : 'white',
+                        borderColor: lightContrast ? '#fff' : '#000',
+                        color: lightContrast ? '#fff' : '#000',
+                        borderRadius: '20px',
+                        padding: 'inherit'
+                      }}
+                      className={`accessibility-button`}
+                    >
+                      <Stack
+                        direction="column"
+                        width="100%"
+                        alignItems="center"
+                        gap="2px"
+                      >
+                        <Box sx={{ height: '60px' }}>
+                          <Icon path={mdiContrastCircle} size={2} />
+                        </Box>
+                        <Box sx={{ height: '30px' }}>
+                          <Typography variant="button">{translation[language].lightContrast}</Typography>
+                        </Box>
+                      </Stack>
+                    </Button>
+                  </Grid>
+                )
+              }
+              {
+                !excludedFeatures.includes(Features.INVERT_COLOR) && (
+                  <Grid
+                    container
+                    item
+                    xs={12}
+                    sm={12}
+                    md={4}
+                    flexDirection="column"
                     alignItems="center"
-                    gap="2px"
                   >
-                    <Box sx={{ height: '60px' }}>
-                      <Icon path={mdiInvertColors} size={2} />
-                    </Box>
-                    <Box sx={{ height: '30px' }}>
-                      <Typography variant="button">{translation[language].invertColor}</Typography>
-                    </Box>
-                  </Stack>
-                </Button>
-              </Grid>
-              <Grid
-                container
-                item
-                xs={12}
-                sm={12}
-                md={4}
-                flexDirection="column"
-                alignItems="center"
-              >
-                <Button
-                  variant="outlined"
-                  fullWidth
-                  onClick={() => handlePageStructureOpening()}
-                  sx={{
-                    height: '125px',
-                    backgroundColor: isPageStructureOpen ? '#87B922' : 'white',
-                    borderColor: isPageStructureOpen ? '#fff' : '#000',
-                    color: isPageStructureOpen ? '#fff' : '#000',
-                    borderRadius: '20px',
-                    padding: 'inherit'
-                  }}
-                  className={`accessibility-button`}
-                >
-                  <Stack
-                    direction="column"
-                    width="100%"
+                    <Button
+                      variant="outlined"
+                      fullWidth
+                      onClick={() => handleInvertColor()}
+                      sx={{
+                        height: '125px',
+                        backgroundColor: invertColor ? '#87B922' : 'white',
+                        borderColor: invertColor ? '#fff' : '#000',
+                        color: invertColor ? '#fff' : '#000',
+                        borderRadius: '20px',
+                        padding: 'inherit'
+                      }}
+                      className={`accessibility-button`}
+                    >
+                      <Stack
+                        direction="column"
+                        width="100%"
+                        alignItems="center"
+                        gap="2px"
+                      >
+                        <Box sx={{ height: '60px' }}>
+                          <Icon path={mdiInvertColors} size={2} />
+                        </Box>
+                        <Box sx={{ height: '30px' }}>
+                          <Typography variant="button">{translation[language].invertColor}</Typography>
+                        </Box>
+                      </Stack>
+                    </Button>
+                  </Grid>
+                )
+              }
+              {
+                !excludedFeatures.includes(Features.PAGE_STRUCTURE) && (
+                  <Grid
+                    container
+                    item
+                    xs={12}
+                    sm={12}
+                    md={4}
+                    flexDirection="column"
                     alignItems="center"
-                    gap="2px"
                   >
-                    <Box sx={{ height: '60px' }}>
-                      <Icon path={mdiPageNextOutline} size={2} />
-                    </Box>
-                    <Box sx={{ height: '30px' }}>
-                      <Typography variant="button">{translation[language].pageStructure}</Typography>
-                    </Box>
-                  </Stack>
-                </Button>
-              </Grid>
-              <Grid
-                container
-                item
-                xs={12}
-                sm={12}
-                md={4}
-                flexDirection="column"
-                alignItems="center"
-              >
-                <Button
-                  variant="outlined"
-                  fullWidth
-                  onClick={() => handleLeftAlign()}
-                  sx={{
-                    height: '125px',
-                    backgroundColor: shouldLeftAlign ? '#87B922' : 'white',
-                    borderColor: shouldLeftAlign ? '#fff' : '#000',
-                    color: shouldLeftAlign ? '#fff' : '#000',
-                    borderRadius: '20px',
-                    padding: 'inherit'
-                  }}
-                  className={`accessibility-button`}
-                >
-                  <Stack
-                    direction="column"
-                    width="100%"
+                    <Button
+                      variant="outlined"
+                      fullWidth
+                      onClick={() => handlePageStructureOpening()}
+                      sx={{
+                        height: '125px',
+                        backgroundColor: isPageStructureOpen ? '#87B922' : 'white',
+                        borderColor: isPageStructureOpen ? '#fff' : '#000',
+                        color: isPageStructureOpen ? '#fff' : '#000',
+                        borderRadius: '20px',
+                        padding: 'inherit'
+                      }}
+                      className={`accessibility-button`}
+                    >
+                      <Stack
+                        direction="column"
+                        width="100%"
+                        alignItems="center"
+                        gap="2px"
+                      >
+                        <Box sx={{ height: '60px' }}>
+                          <Icon path={mdiPageNextOutline} size={2} />
+                        </Box>
+                        <Box sx={{ height: '30px' }}>
+                          <Typography variant="button">{translation[language].pageStructure}</Typography>
+                        </Box>
+                      </Stack>
+                    </Button>
+                  </Grid>
+                )
+              }
+              {
+                !excludedFeatures.includes(Features.LEFT_ALIGN) && (
+                  <Grid
+                    container
+                    item
+                    xs={12}
+                    sm={12}
+                    md={4}
+                    flexDirection="column"
                     alignItems="center"
-                    gap="2px"
                   >
-                    <Box sx={{ height: '60px' }}>
-                      <Icon path={mdiReceiptTextArrowLeftOutline} size={2} />
-                    </Box>
-                    <Box sx={{ height: '30px' }}>
-                      <Typography variant="button">{translation[language].leftAlign}</Typography>
-                    </Box>
-                  </Stack>
-                </Button>
-              </Grid>
-              <Grid
-                container
-                item
-                xs={12}
-                sm={12}
-                md={4}
-                flexDirection="column"
-                alignItems="center"
-              >
-                <Button
-                  variant="outlined"
-                  fullWidth
-                  onClick={() => handleRightAlign()}
-                  sx={{
-                    height: '125px',
-                    backgroundColor: shouldRightAlign ? '#87B922' : 'white',
-                    borderColor: shouldRightAlign ? '#fff' : '#000',
-                    color: shouldRightAlign ? '#fff' : '#000',
-                    borderRadius: '20px',
-                    padding: 'inherit'
-                  }}
-                  className={`accessibility-button`}
-                >
-                  <Stack
-                    direction="column"
-                    width="100%"
+                    <Button
+                      variant="outlined"
+                      fullWidth
+                      onClick={() => handleLeftAlign()}
+                      sx={{
+                        height: '125px',
+                        backgroundColor: shouldLeftAlign ? '#87B922' : 'white',
+                        borderColor: shouldLeftAlign ? '#fff' : '#000',
+                        color: shouldLeftAlign ? '#fff' : '#000',
+                        borderRadius: '20px',
+                        padding: 'inherit'
+                      }}
+                      className={`accessibility-button`}
+                    >
+                      <Stack
+                        direction="column"
+                        width="100%"
+                        alignItems="center"
+                        gap="2px"
+                      >
+                        <Box sx={{ height: '60px' }}>
+                          <Icon path={mdiReceiptTextArrowLeftOutline} size={2} />
+                        </Box>
+                        <Box sx={{ height: '30px' }}>
+                          <Typography variant="button">{translation[language].leftAlign}</Typography>
+                        </Box>
+                      </Stack>
+                    </Button>
+                  </Grid>
+                )
+              }
+              {
+                !excludedFeatures.includes(Features.RIGHT_ALIGN) && (
+                  <Grid
+                    container
+                    item
+                    xs={12}
+                    sm={12}
+                    md={4}
+                    flexDirection="column"
                     alignItems="center"
-                    gap="2px"
                   >
-                    <Box sx={{ height: '60px' }}>
-                      <Icon path={mdiReceiptTextArrowRightOutline} size={2} />
-                    </Box>
-                    <Box sx={{ height: '30px' }}>
-                      <Typography variant="button">{translation[language].rightAlign}</Typography>
-                    </Box>
-                  </Stack>
-                </Button>
-              </Grid>
-              <Grid
-                container
-                item
-                xs={12}
-                sm={12}
-                md={4}
-                flexDirection="column"
-                alignItems="center"
-              >
-                <Button
-                  variant="outlined"
-                  fullWidth
-                  onClick={() => handleLowSaturation()}
-                  sx={{
-                    height: '125px',
-                    backgroundColor: lowSaturation ? '#87B922' : 'white',
-                    borderColor: lowSaturation ? '#fff' : '#000',
-                    color: lowSaturation ? '#fff' : '#000',
-                    borderRadius: '20px',
-                    padding: 'inherit'
-                  }}
-                  className={`accessibility-button`}
-                >
-                  <Stack
-                    direction="column"
-                    width="100%"
+                    <Button
+                      variant="outlined"
+                      fullWidth
+                      onClick={() => handleRightAlign()}
+                      sx={{
+                        height: '125px',
+                        backgroundColor: shouldRightAlign ? '#87B922' : 'white',
+                        borderColor: shouldRightAlign ? '#fff' : '#000',
+                        color: shouldRightAlign ? '#fff' : '#000',
+                        borderRadius: '20px',
+                        padding: 'inherit'
+                      }}
+                      className={`accessibility-button`}
+                    >
+                      <Stack
+                        direction="column"
+                        width="100%"
+                        alignItems="center"
+                        gap="2px"
+                      >
+                        <Box sx={{ height: '60px' }}>
+                          <Icon path={mdiReceiptTextArrowRightOutline} size={2} />
+                        </Box>
+                        <Box sx={{ height: '30px' }}>
+                          <Typography variant="button">{translation[language].rightAlign}</Typography>
+                        </Box>
+                      </Stack>
+                    </Button>
+                  </Grid>
+                )
+              }
+              {
+                !excludedFeatures.includes(Features.LOW_SATURATION) && (
+                  <Grid
+                    container
+                    item
+                    xs={12}
+                    sm={12}
+                    md={4}
+                    flexDirection="column"
                     alignItems="center"
-                    gap="2px"
                   >
-                    <Box sx={{ height: '60px' }}>
-                      <Icon path={mdiInvertColors} size={2} />
-                    </Box>
-                    <Box sx={{ height: '30px' }}>
-                      <Typography variant="button">{translation[language].lowSaturation}</Typography>
-                    </Box>
-                  </Stack>
-                </Button>
-              </Grid>
-              <Grid
-                container
-                item
-                xs={12}
-                sm={12}
-                md={4}
-                flexDirection="column"
-                alignItems="center"
-              >
-                <Button
-                  variant="outlined"
-                  fullWidth
-                  onClick={() => handleHighSaturation()}
-                  sx={{
-                    height: '125px',
-                    backgroundColor: highSaturation ? '#87B922' : 'white',
-                    borderColor: highSaturation ? '#fff' : '#000',
-                    color: highSaturation ? '#fff' : '#000',
-                    borderRadius: '20px',
-                    padding: 'inherit'
-                  }}
-                  className={`accessibility-button`}
-                >
-                  <Stack
-                    direction="column"
-                    width="100%"
+                    <Button
+                      variant="outlined"
+                      fullWidth
+                      onClick={() => handleLowSaturation()}
+                      sx={{
+                        height: '125px',
+                        backgroundColor: lowSaturation ? '#87B922' : 'white',
+                        borderColor: lowSaturation ? '#fff' : '#000',
+                        color: lowSaturation ? '#fff' : '#000',
+                        borderRadius: '20px',
+                        padding: 'inherit'
+                      }}
+                      className={`accessibility-button`}
+                    >
+                      <Stack
+                        direction="column"
+                        width="100%"
+                        alignItems="center"
+                        gap="2px"
+                      >
+                        <Box sx={{ height: '60px' }}>
+                          <Icon path={mdiInvertColors} size={2} />
+                        </Box>
+                        <Box sx={{ height: '30px' }}>
+                          <Typography variant="button">{translation[language].lowSaturation}</Typography>
+                        </Box>
+                      </Stack>
+                    </Button>
+                  </Grid>
+                )
+              }
+              {
+                !excludedFeatures.includes(Features.HIGH_SATURATION) && (
+                  <Grid
+                    container
+                    item
+                    xs={12}
+                    sm={12}
+                    md={4}
+                    flexDirection="column"
                     alignItems="center"
-                    gap="2px"
                   >
-                    <Box sx={{ height: '60px' }}>
-                      <Icon path={mdiInvertColors} size={2} />
-                    </Box>
-                    <Box sx={{ height: '30px' }}>
-                      <Typography variant="button">{translation[language].highSaturation}</Typography>
-                    </Box>
-                  </Stack>
-                </Button>
-              </Grid>
-              <Grid
-                container
-                item
-                xs={12}
-                sm={12}
-                md={4}
-                flexDirection="column"
-                alignItems="center"
-              >
-                <Button
-                  variant="outlined"
-                  fullWidth
-                  onClick={() => handleDesaturation()}
-                  sx={{
-                    height: '125px',
-                    backgroundColor: desaturation ? '#87B922' : 'white',
-                    borderColor: desaturation ? '#fff' : '#000',
-                    color: desaturation ? '#fff' : '#000',
-                    borderRadius: '20px',
-                    padding: 'inherit'
-                  }}
-                  className={`accessibility-button`}
-                >
-                  <Stack
-                    direction="column"
-                    width="100%"
+                    <Button
+                      variant="outlined"
+                      fullWidth
+                      onClick={() => handleHighSaturation()}
+                      sx={{
+                        height: '125px',
+                        backgroundColor: highSaturation ? '#87B922' : 'white',
+                        borderColor: highSaturation ? '#fff' : '#000',
+                        color: highSaturation ? '#fff' : '#000',
+                        borderRadius: '20px',
+                        padding: 'inherit'
+                      }}
+                      className={`accessibility-button`}
+                    >
+                      <Stack
+                        direction="column"
+                        width="100%"
+                        alignItems="center"
+                        gap="2px"
+                      >
+                        <Box sx={{ height: '60px' }}>
+                          <Icon path={mdiInvertColors} size={2} />
+                        </Box>
+                        <Box sx={{ height: '30px' }}>
+                          <Typography variant="button">{translation[language].highSaturation}</Typography>
+                        </Box>
+                      </Stack>
+                    </Button>
+                  </Grid>
+                )
+              }
+              {
+                !excludedFeatures.includes(Features.DESATURATE) && (
+                  <Grid
+                    container
+                    item
+                    xs={12}
+                    sm={12}
+                    md={4}
+                    flexDirection="column"
                     alignItems="center"
-                    gap="2px"
                   >
-                    <Box sx={{ height: '60px' }}>
-                      <Icon path={mdiInvertColors} size={2} />
-                    </Box>
-                    <Box sx={{ height: '30px' }}>
-                      <Typography variant="button">{translation[language].desaturate}</Typography>
-                    </Box>
-                  </Stack>
-                </Button>
-              </Grid>
+                    <Button
+                      variant="outlined"
+                      fullWidth
+                      onClick={() => handleDesaturation()}
+                      sx={{
+                        height: '125px',
+                        backgroundColor: desaturation ? '#87B922' : 'white',
+                        borderColor: desaturation ? '#fff' : '#000',
+                        color: desaturation ? '#fff' : '#000',
+                        borderRadius: '20px',
+                        padding: 'inherit'
+                      }}
+                      className={`accessibility-button`}
+                    >
+                      <Stack
+                        direction="column"
+                        width="100%"
+                        alignItems="center"
+                        gap="2px"
+                      >
+                        <Box sx={{ height: '60px' }}>
+                          <Icon path={mdiInvertColors} size={2} />
+                        </Box>
+                        <Box sx={{ height: '30px' }}>
+                          <Typography variant="button">{translation[language].desaturate}</Typography>
+                        </Box>
+                      </Stack>
+                    </Button>
+                  </Grid>
+                )
+              }
             </Grid>
           </Grid>
         )}
