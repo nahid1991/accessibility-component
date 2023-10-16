@@ -45,7 +45,7 @@ const Accessibility: React.FC<AccessibilityProps> = ({
   const [lowSaturation, setLowSaturation] = useState<boolean>(false);
   const [highSaturation, setHighSaturation] = useState<boolean>(false);
   const [desaturation, setDesaturation] = useState<boolean>(false);
-  const [languange, setLanguage] = useState<string>(localStorage.getItem("accLang") ?? lang);
+  // const [languange, setLanguage] = useState<string>(localStorage.getItem("accLang") ?? lang);
 
   useEffect(() => {
     const newClasses: Set<string> = new Set<string>();
@@ -129,9 +129,9 @@ const Accessibility: React.FC<AccessibilityProps> = ({
     setDesaturation(!!localStorage.getItem('desaturation'));
   }, []);
 
-  useEffect(() => {
-    setLanguage(localStorage.getItem("accLang") ?? lang)
-  }, [lang]);
+  // useEffect(() => {
+  //   setLanguage(localStorage.getItem("accLang") ?? lang)
+  // }, [lang]);
 
   const handleBigCursorChange = useCallback(() => {
     bigCursor
@@ -451,10 +451,10 @@ const Accessibility: React.FC<AccessibilityProps> = ({
       : bodyClasses.remove('dark-contrast');
   }, [invertColor, darkContrast, lightContrast]);
 
-  const handleSetLanguage = useCallback((language: string) => {
-    setLanguage(language);
-    localStorage.setItem("accLang", language);
-  }, []);
+  // const handleSetLanguage = useCallback((language: string) => {
+  //   setLanguage(language);
+  //   localStorage.setItem("accLang", language);
+  // }, []);
 
   return (
     <>
@@ -499,7 +499,7 @@ const Accessibility: React.FC<AccessibilityProps> = ({
           handleLowSaturation={handleLowSaturation}
           handleHighSaturation={handleHighSaturation}
           handleDesaturation={handleDesaturation}
-          language={languange}
+          language={lang}
         />
       ) : (
         <MUI
@@ -542,8 +542,7 @@ const Accessibility: React.FC<AccessibilityProps> = ({
           handleLowSaturation={handleLowSaturation}
           handleHighSaturation={handleHighSaturation}
           handleDesaturation={handleDesaturation}
-          language={languange}
-          handleSetLanguage={handleSetLanguage}
+          language={lang}
         />
       )}
     </>

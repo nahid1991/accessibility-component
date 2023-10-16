@@ -63,7 +63,6 @@ export interface MUIProps {
   handleHighSaturation?: () => void;
   handleDesaturation?: () => void;
   language?: string;
-  handleSetLanguage?: (language: string) => void;
 }
 
 const MUI: React.FC<MUIProps> = React.forwardRef(
@@ -108,8 +107,7 @@ const MUI: React.FC<MUIProps> = React.forwardRef(
       handleLowSaturation = () => {},
       handleHighSaturation = () => {},
       handleDesaturation = () => {},
-      language = "en",
-      handleSetLanguage = (language: string) => {}
+      language = "en"
     },
     ref
   ) => {
