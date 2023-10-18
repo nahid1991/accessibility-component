@@ -1,4 +1,4 @@
-# accessibility-component
+# Accessibility Component
 
 ## Requirements
 
