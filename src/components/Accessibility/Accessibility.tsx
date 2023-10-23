@@ -1,13 +1,29 @@
 import React, { useEffect, useCallback, useState, useRef } from 'react';
 import './Accessibility.css';
-import MUI from './MUI';
-import Bootstrap from './Bootstrap';
+import MUI from './ThemedLayout/MUI';
+import Bootstrap from './ThemedLayout/Bootstrap';
+import {
+  mdiArrowLeftRightBoldOutline, mdiArrowUpDownBoldOutline, mdiContrastCircle,
+  mdiCursorDefaultOutline,
+  mdiImageOffOutline, mdiInvertColors,
+  mdiLinkBoxOutline,
+  mdiMinusBoxOutline, mdiPageNextOutline, mdiReceiptTextArrowLeftOutline, mdiReceiptTextArrowRightOutline
+} from "@mdi/js";
+import {Feature, Types} from "./types";
+import {translation} from "./Language";
+import {FaArrowsAltH, FaArrowsAltV, FaLink, FaMousePointer} from "react-icons/fa";
+import {MdInvertColors, MdOutlineSplitscreen} from "react-icons/md";
+import {LuImageOff} from "react-icons/lu";
+import {ImContrast} from "react-icons/im";
+import {LiaPagerSolid} from "react-icons/lia";
+import {GrTextAlignLeft, GrTextAlignRight} from "react-icons/gr";
+import Icon from "@mdi/react";
 
 export interface AccessibilityProps {
   children?: React.ReactNode;
   theme?: string;
   lang?: string;
-  excludedFeatures?: string[]
+  excludedFeatures?: string[];
 }
 
 export interface HeadingData {
@@ -20,7 +36,7 @@ export interface HeadingData {
 const Accessibility: React.FC<AccessibilityProps> = ({
   children,
   theme = 'mui',
-  lang = "en",
+  lang = 'en',
   excludedFeatures = []
 }) => {
   const ref = useRef(null);
@@ -47,7 +63,6 @@ const Accessibility: React.FC<AccessibilityProps> = ({
   const [lowSaturation, setLowSaturation] = useState<boolean>(false);
   const [highSaturation, setHighSaturation] = useState<boolean>(false);
   const [desaturation, setDesaturation] = useState<boolean>(false);
-  // const [languange, setLanguage] = useState<string>(localStorage.getItem("accLang") ?? lang);
 
   useEffect(() => {
     const newClasses: Set<string> = new Set<string>();
@@ -130,10 +145,6 @@ const Accessibility: React.FC<AccessibilityProps> = ({
   useEffect(() => {
     setDesaturation(!!localStorage.getItem('desaturation'));
   }, []);
-
-  // useEffect(() => {
-  //   setLanguage(localStorage.getItem("accLang") ?? lang)
-  // }, [lang]);
 
   const handleBigCursorChange = useCallback(() => {
     bigCursor
@@ -358,7 +369,8 @@ const Accessibility: React.FC<AccessibilityProps> = ({
           );
         }
       } else if (childNode.nodeType === Node.TEXT_NODE) {
-        const textContent = (childNode.textContent && childNode.textContent.trim()) || '';
+        const textContent =
+          (childNode.textContent && childNode.textContent.trim()) || '';
         if (textContent !== '') {
           nodeData.innerTexts.push(textContent);
         }
@@ -393,14 +405,18 @@ const Accessibility: React.FC<AccessibilityProps> = ({
   }, [isPageStructureOpen, getHeadingsData, getHeadings]);
 
   const handleLeftAlign = useCallback(() => {
-    shouldLeftAlign ? localStorage.removeItem('leftAlign') : localStorage.setItem('leftAlign', '1');
+    shouldLeftAlign
+      ? localStorage.removeItem('leftAlign')
+      : localStorage.setItem('leftAlign', '1');
     localStorage.removeItem('rightAlign');
     setShouldLeftAlign(!shouldLeftAlign);
     setShouldRightAlign(false);
   }, [shouldLeftAlign]);
 
   const handleRightAlign = useCallback(() => {
-    shouldRightAlign ? localStorage.removeItem('rightAlign') : localStorage.setItem('rightAlign', '1');
+    shouldRightAlign
+      ? localStorage.removeItem('rightAlign')
+      : localStorage.setItem('rightAlign', '1');
     localStorage.removeItem('leftAlign');
     setShouldRightAlign(!shouldRightAlign);
     setShouldLeftAlign(false);
@@ -453,102 +469,149 @@ const Accessibility: React.FC<AccessibilityProps> = ({
       : bodyClasses.remove('dark-contrast');
   }, [invertColor, darkContrast, lightContrast]);
 
-  // const handleSetLanguage = useCallback((language: string) => {
-  //   setLanguage(language);
-  //   localStorage.setItem("accLang", language);
-  // }, []);
+  const features: Feature[] = [
+    {
+      feature: bigCursor,
+      handler: handleBigCursorChange,
+      icon: theme === "bootstrap" ? <FaMousePointer size={30} /> : <Icon path={mdiCursorDefaultOutline} size={2} />,
+      featureName: Types.BIG_CURSOR,
+      text: translation[lang].bigCursor
+    },
+    {
+      feature: highlightLink,
+      handler: handleLinkHighlightingChange,
+      icon: theme === "bootstrap" ? <FaLink size={30} /> : <Icon path={mdiLinkBoxOutline} size={2} />,
+      featureName: Types.HIGHLIGHT_LINK,
+      text: translation[lang].highlightLink
+    },
+    {
+      feature: readingMask,
+      handler: handleReadingMask,
+      icon: theme === "bootstrap" ? <MdOutlineSplitscreen size={30} /> : <Icon path={mdiMinusBoxOutline} size={2} />,
+      featureName: Types.READING_MASK,
+      text: translation[lang].readingMask
+    },
+    {
+      feature: hideImage,
+      handler: handleHideImage,
+      icon: theme === "bootstrap" ? <LuImageOff size={30} /> : <Icon path={mdiImageOffOutline} size={2} />,
+      featureName: Types.HIDE_IMAGE,
+      text: translation[lang].hideImage
+    },
+    {
+      feature: increasedLetterSpace,
+      handler: handleLetterSpace,
+      icon: theme === "bootstrap" ? <FaArrowsAltH size={30} /> : <Icon path={mdiArrowLeftRightBoldOutline} size={2} />,
+      featureName: Types.INCREASE_LETTER_SPACE,
+      text: translation[lang].increaseLetterSpace
+    },
+    {
+      feature: increasedLineHeight,
+      handler: handleLineHeight,
+      icon: theme === "bootstrap" ? <FaArrowsAltV size={30} /> : <Icon path={mdiArrowUpDownBoldOutline} size={2} />,
+      featureName: Types.INCREASE_LINE_HEIGHT,
+      text: translation[lang].increaseLineHeight
+    },
+    {
+      feature: darkContrast,
+      handler: handleDarkContrast,
+      icon: theme === "bootstrap" ? <ImContrast size={30} /> : <Icon path={mdiContrastCircle} size={2} />,
+      featureName: Types.DARK_CONTRAST,
+      text: translation[lang].darkContrast
+    },
+    {
+      feature: lightContrast,
+      handler: handleLightContrast,
+      icon: theme === "bootstrap" ? <ImContrast size={30} /> : <Icon path={mdiContrastCircle} size={2} />,
+      featureName: Types.LIGHT_CONTRAST,
+      text: translation[lang].lightContrast
+    },
+    {
+      feature: invertColor,
+      handler: handleInvertColor,
+      icon: theme === "bootstrap" ? <MdInvertColors size={30} /> : <Icon path={mdiInvertColors} size={2} />,
+      featureName: Types.INVERT_COLOR,
+      text: translation[lang].invertColor
+    },
+    {
+      feature: isPageStructureOpen,
+      handler: handlePageStructureOpening,
+      icon: theme === "bootstrap" ? <LiaPagerSolid size={30} /> : <Icon path={mdiPageNextOutline} size={2} />,
+      featureName: Types.PAGE_STRUCTURE,
+      text: translation[lang].pageStructure
+    },
+    {
+      feature: shouldLeftAlign,
+      handler: handleLeftAlign,
+      icon: theme === "bootstrap" ? <GrTextAlignLeft size={30} /> : <Icon path={mdiReceiptTextArrowLeftOutline} size={2} />,
+      featureName: Types.LEFT_ALIGN,
+      text: translation[lang].leftAlign
+    },
+    {
+      feature: shouldRightAlign,
+      handler: handleRightAlign,
+      icon: theme === "bootstrap" ? <GrTextAlignRight size={30} /> : <Icon path={mdiReceiptTextArrowRightOutline} size={2} />,
+      featureName: Types.RIGHT_ALIGN,
+      text: translation[lang].rightAlign
+    },
+    {
+      feature: lowSaturation,
+      handler: handleLowSaturation,
+      icon: theme === "bootstrap" ? <MdInvertColors size={30} /> : <Icon path={mdiInvertColors} size={2} />,
+      featureName: Types.LOW_SATURATION,
+      text: translation[lang].lowSaturation
+    },
+    {
+      feature: highSaturation,
+      handler: handleHighSaturation,
+      icon: theme === "bootstrap" ? <MdInvertColors size={30} /> : <Icon path={mdiInvertColors} size={2} />,
+      featureName: Types.HIGH_SATURATION,
+      text: translation[lang].highSaturation
+    },
+    {
+      feature: desaturation,
+      handler: handleDesaturation,
+      icon: theme === "bootstrap" ? <MdInvertColors size={30} /> : <Icon path={mdiInvertColors} size={2} />,
+      featureName: Types.DESATURATE,
+      text: translation[lang].desaturate
+    }
+  ];
+
+  const MUIOrBootstrap = theme === 'bootstrap' ? Bootstrap : MUI;
 
   return (
     <>
-      {theme === 'bootstrap' ? (
-        <Bootstrap
-          children={children}
-          bigCursor={bigCursor}
-          highlightLink={highlightLink}
-          increasedLetterSpace={increasedLetterSpace}
-          increasedLineHeight={increasedLineHeight}
-          hideImage={hideImage}
-          readingMask={readingMask}
-          darkContrast={darkContrast}
-          lightContrast={lightContrast}
-          invertColor={invertColor}
-          handleMouseMove={handleMouseMove}
-          handleLetterSpace={handleLetterSpace}
-          handleBigCursorChange={handleBigCursorChange}
-          handleReadingMask={handleReadingMask}
-          handleLinkHighlightingChange={handleLinkHighlightingChange}
-          handleHideImage={handleHideImage}
-          handleLineHeight={handleLineHeight}
-          handleDarkContrast={handleDarkContrast}
-          handleLightContrast={handleLightContrast}
-          handleInvertColor={handleInvertColor}
-          isOpen={isOpen}
-          isPageStructureOpen={isPageStructureOpen}
-          handlePageStructureOpening={handlePageStructureOpening}
-          setIsOpen={setIsOpen}
-          classes={classes}
-          mouseYPosition={mouseYPosition}
-          links={links}
-          headings={headings}
-          shouldLeftAlign={shouldLeftAlign}
-          handleLeftAlign={handleLeftAlign}
-          shouldRightAlign={shouldRightAlign}
-          handleRightAlign={handleRightAlign}
-          handleReset={handleReset}
-          lowSaturation={lowSaturation}
-          highSaturation={highSaturation}
-          desaturation={desaturation}
-          handleLowSaturation={handleLowSaturation}
-          handleHighSaturation={handleHighSaturation}
-          handleDesaturation={handleDesaturation}
-          language={lang}
-          excludedFeatures={excludedFeatures}
-        />
-      ) : (
-        <MUI
-          children={children}
-          bigCursor={bigCursor}
-          highlightLink={highlightLink}
-          increasedLetterSpace={increasedLetterSpace}
-          increasedLineHeight={increasedLineHeight}
-          hideImage={hideImage}
-          readingMask={readingMask}
-          darkContrast={darkContrast}
-          lightContrast={lightContrast}
-          invertColor={invertColor}
-          handleMouseMove={handleMouseMove}
-          handleLetterSpace={handleLetterSpace}
-          handleBigCursorChange={handleBigCursorChange}
-          handleReadingMask={handleReadingMask}
-          handleLinkHighlightingChange={handleLinkHighlightingChange}
-          handleHideImage={handleHideImage}
-          handleLineHeight={handleLineHeight}
-          handleDarkContrast={handleDarkContrast}
-          handleLightContrast={handleLightContrast}
-          handleInvertColor={handleInvertColor}
-          isOpen={isOpen}
-          isPageStructureOpen={isPageStructureOpen}
-          handlePageStructureOpening={handlePageStructureOpening}
-          setIsOpen={setIsOpen}
-          classes={classes}
-          mouseYPosition={mouseYPosition}
-          links={links}
-          headings={headings}
-          shouldLeftAlign={shouldLeftAlign}
-          handleLeftAlign={handleLeftAlign}
-          shouldRightAlign={shouldRightAlign}
-          handleRightAlign={handleRightAlign}
-          handleReset={handleReset}
-          lowSaturation={lowSaturation}
-          highSaturation={highSaturation}
-          desaturation={desaturation}
-          handleLowSaturation={handleLowSaturation}
-          handleHighSaturation={handleHighSaturation}
-          handleDesaturation={handleDesaturation}
-          language={lang}
-          excludedFeatures={excludedFeatures}
-        />
-      )}
+      <MUIOrBootstrap
+        children={children}
+        handleMouseMove={handleMouseMove}
+        isOpen={isOpen}
+        setIsOpen={setIsOpen}
+        classes={classes}
+        mouseYPosition={mouseYPosition}
+        links={links}
+        headings={headings}
+        handleReset={handleReset}
+        language={lang}
+        features={features.filter((f) => {
+          return !excludedFeatures.includes(f.featureName)
+        })}
+        resetDisabled={
+          !bigCursor &&
+          !hideImage &&
+          !highlightLink &&
+          !increasedLetterSpace &&
+          !increasedLineHeight &&
+          !readingMask &&
+          !darkContrast &&
+          !lightContrast &&
+          !invertColor &&
+          !isPageStructureOpen &&
+          !shouldLeftAlign &&
+          !shouldRightAlign &&
+          !lowSaturation &&
+          !highSaturation &&
+          !desaturation}
+      />
     </>
   );
 };

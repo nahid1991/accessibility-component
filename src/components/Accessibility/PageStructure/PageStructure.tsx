@@ -10,7 +10,7 @@ import {
 } from '@mui/material';
 import { HeadingData } from '../Accessibility';
 import HeadingTree from './HeadingTree';
-import { translation } from "../Language";
+import { translation } from '../Language';
 
 export interface PageStructureProps {
   isOpen?: boolean;
@@ -38,7 +38,7 @@ const PageStructure: React.FC<PageStructureProps> = ({
   links = [],
   headings = [],
   onClose = () => {},
-  language = "en",
+  language = 'en',
   bigCursor = false
 }) => {
   const [value, setValue] = useState(0);
@@ -52,7 +52,10 @@ const PageStructure: React.FC<PageStructureProps> = ({
 
   return (
     <Dialog open={isOpen} onClose={onClose}>
-      <DialogContent sx={{ minWidth: '500px', minHeight: '60vh' }} className={bigCursor ? "cursor": ""}>
+      <DialogContent
+        sx={{ minWidth: '500px', minHeight: '60vh' }}
+        className={bigCursor ? 'cursor' : ''}
+      >
         <Box sx={{ width: '100%' }}>
           <Tabs
             value={value}

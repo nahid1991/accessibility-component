@@ -1,3 +1,3 @@
 export { default } from './Accessibility';
 
-export { Features } from './Features';
+export { Types } from './types';
