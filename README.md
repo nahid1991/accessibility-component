@@ -1,14 +1,51 @@
 # Accessibility Component
+The React Accessibility Enhancer is a powerful tool designed to improve the visual representation and accessibility of React applications. With this component, you can effortlessly enhance the user experience for individuals with diverse needs, ensuring your application is inclusive and usable for everyone.
+
+<img src="./example.gif" alt="Example Image" />
 
 ## Requirements
 
+- ```"@mui/material": "^5.0.0" or "bootstrap": "^5.0.0" and "react-bootstrap": "^2.8.0"```
+- ```"react": "^17.0.0"```
 
 ## Getting Started
-
+### Installation
+- Either add ```"@nahid1991/accessibility-package": "^0.0.27"``` in ```package.json``` and in terminal run ```npm install```
+- Or in the terminal run ```npm install @nahid1991/accessibility-package```
+### Usage
+- Import the package by adding ```import { Accessibility } from '@nahid1991/accessibility-package'```
+- Wrap the entry point component like in the example below:
+```
+    <Accessibility lang="de" excludedFeatures={[]}>
+      <AppHeader />
+      <main>{routing}</main>
+      <AppFooter />
+    </Accessibility>
+```
+### Props
+- ```lang```: This prop determines which language should be used in the component. We currently support setting "en" for English (default) and "de" for German
+- ```theme```: Set "bootstrap" for Bootstrap themed component and "mui" for Mui (default) based component
+- ```excludedFeatures```: This is an array and any string corresponding to the features those will not be rendered in the component. Example: ```excludedFeatures={['BIG_CURSOR']}```. Here the big cursor feature will be excluded from the component. The list of strings we can use to exclude desired features are given below:
+  - 'BIG_CURSOR'
+  - 'READING_MASK'
+  - 'HIGHLIGHT_LINK'
+  - 'HIDE_IMAGE'
+  - 'INCREASE_LETTER_SPACE'
+  - 'INCREASE_LINE_HEIGHT'
+  - 'DARK_CONTRAST'
+  - 'LIGHT_CONTRAST'
+  - 'INVERT_COLOR'
+  - 'PAGE_STRUCTURE'
+  - 'LEFT_ALIGN'
+  - 'RIGHT_ALIGN'
+  - 'LOW_SATURATION'
+  - 'HIGH_SATURATION'
+  - 'DESATURATE'
 
 ## Authors and acknowledgment
 
 - [Nahid Islam](https://github.com/nahid1991)
+- [Adeline Silva Schäfer](https://github.com/adelinerd)
 
 ### Acknowledgment
 
