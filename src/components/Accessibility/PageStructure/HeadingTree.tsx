@@ -1,6 +1,5 @@
 import React from 'react';
 import { HeadingData } from '../Accessibility';
-import TreeItem from '@mui/lab/TreeItem';
 import { Chip, Grid, Typography } from '@mui/material';
 
 interface HeadingTreeProps {

@@ -2,7 +2,7 @@
   "name": "@nahid1991/accessibility-package",
   "version": "0.0.28",
   "publishConfig": {
-    "registry": "https://npm.pkg.github.com/nahid1991"
+    "registry": "https://registry.npmjs.org/"
   },
   "description": "This is a react component based in Material UI to mitigate the accessibility issues such as ADHD, some of the vision impairments etc and many more.",
   "scripts": {
