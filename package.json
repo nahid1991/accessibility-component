@@ -4,7 +4,7 @@
   "publishConfig": {
     "registry": "https://registry.npmjs.org/"
   },
-  "description": "This is a react component based in Material UI to mitigate the accessibility issues such as ADHD, some of the vision impairments etc and many more.",
+  "description": "The React Accessibility Enhancer is a powerful tool designed to improve the visual representation and accessibility of React applications. With this component, you can effortlessly enhance the user experience for individuals with diverse needs, ensuring your application is inclusive and usable for everyone.",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "copy": "rm -rf ./src/components/Accessibility/* && cp -R ../portal/src/components/Accessibility/* ./src/components/Accessibility/",

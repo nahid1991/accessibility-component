@@ -1,7 +1,8 @@
 # Accessibility Component
 The React Accessibility Enhancer is a powerful tool designed to improve the visual representation and accessibility of React applications. With this component, you can effortlessly enhance the user experience for individuals with diverse needs, ensuring your application is inclusive and usable for everyone.
 
-<img src="./example.gif" alt="Example Image" />
+[//]: # (<img src="./example.gif" alt="Example Image" />)
+[Repository](https://github.com/nahid1991/accessibility-component)
 
 ## Requirements
 
@@ -10,10 +11,10 @@ The React Accessibility Enhancer is a powerful tool designed to improve the visu
 
 ## Getting Started
 ### Installation
-- Either add ```"@nahid1991/accessibility-package": "^0.0.28"``` in ```package.json``` and in terminal run ```npm install```
-- Or in the terminal run ```npm install @nahid1991/accessibility-package```
+- Either add ```"react-accessibility-package": "^0.0.29"``` in ```package.json``` and in terminal run ```npm install```
+- Or in the terminal run ```npm install react-accessibility-package```
 ### Usage
-- Import the package by adding ```import { Accessibility } from '@nahid1991/accessibility-package'```
+- Import the package by adding ```import { Accessibility } from 'react-accessibility-package'```
 - Wrap the entry point component like in the example below:
 ```
     <Accessibility lang="de" excludedFeatures={[]}>
