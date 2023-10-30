@@ -1,6 +1,6 @@
 {
   "name": "@nahid1991/accessibility-package",
-  "version": "0.0.28",
+  "version": "0.0.29",
   "publishConfig": {
     "registry": "https://registry.npmjs.org/"
   },
