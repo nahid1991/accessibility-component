@@ -12,7 +12,7 @@ The React Accessibility Enhancer is a powerful tool designed to improve the visu
 
 ## Getting Started
 ### Installation
-- Either add ```"react-accessibility-package": "^0.0.29"``` in ```package.json``` and in terminal run ```npm install```
+- Either add ```"react-accessibility-package": "^0.0.34"``` in ```package.json``` and in terminal run ```npm install```
 - Or in the terminal run ```npm install react-accessibility-package```
 - Or if you are using yarn run ```yarn add react-accessibility-package```
 ### Usage
