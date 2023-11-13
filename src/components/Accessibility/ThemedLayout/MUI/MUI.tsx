@@ -114,6 +114,7 @@ const MUI: React.FC<MUIProps> = React.forwardRef<HTMLDivElement, MUIProps>(
                     }
                     fullWidth
                     onClick={() => handleReset()}
+                    aria-label={translation[language].reset}
                   >
                     {translation[language].reset}
                   </Button>
@@ -129,6 +130,7 @@ const MUI: React.FC<MUIProps> = React.forwardRef<HTMLDivElement, MUIProps>(
                     md={4}
                     flexDirection="column"
                     alignItems="center"
+                    aria-label={f.text}
                   >
                     <Button
                       variant="outlined"

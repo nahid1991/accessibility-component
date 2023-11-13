@@ -108,6 +108,7 @@ const Bootstrap: React.FC<BootstrapInterface> = React.forwardRef<HTMLDivElement,
                       disabled={
                         resetDisabled
                       }
+                      aria-label={translation[language].reset}
                     >
                       {translation[language].reset}
                     </Button>
@@ -129,6 +130,7 @@ const Bootstrap: React.FC<BootstrapInterface> = React.forwardRef<HTMLDivElement,
                         padding: 'inherit',
                         width: '100%'
                       }}
+                      aria-label={f.text}
                     >
                       <Container>
                         <Row>
