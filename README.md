@@ -21,7 +21,7 @@ The React Accessibility Enhancer is a powerful tool designed to improve the visu
 ```
     <Accessibility lang="de" excludedFeatures={[]}>
       <AppHeader />
-      <main>{routing}</main>
+        <main/>
       <AppFooter />
     </Accessibility>
 ```
