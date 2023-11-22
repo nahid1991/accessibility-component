@@ -27,7 +27,7 @@ The React Accessibility Enhancer is a powerful tool designed to improve the visu
 ```
 ### Props
 - ```lang```: This prop determines which language should be used in the component. We currently support setting "en" for English (default) and "de" for German
-- ```theme```: Set "bootstrap" for Bootstrap themed component and "mui" for Mui (default) based component
+- ```theme```: Set "bootstrap" for Bootstrap themed component and "mui" for Mui (default) based component. Unless ```react-bootstrap``` is being used do not set the theme as "bootstrap".
 - ```excludedFeatures```: This is an array and any string corresponding to the features those will not be rendered in the component. Example: ```excludedFeatures={['BIG_CURSOR']}```. Here the big cursor feature will be excluded from the component. The list of strings we can use to exclude desired features are given below:
   - 'BIG_CURSOR'
   - 'READING_MASK'
