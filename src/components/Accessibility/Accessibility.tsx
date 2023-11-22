@@ -490,7 +490,7 @@ const Accessibility: React.FC<AccessibilityProps> = ({
 
   useEffect(() => {
     magnify
-      ? (document.documentElement.style.fontSize = `${maxFontSize ?? 24}px`)
+      ? (document.documentElement.style.fontSize = `${maxFontSize ? maxFontSize : 24}px`)
       : (document.documentElement.style.fontSize = `inherit`);
   }, [magnify]);
 
