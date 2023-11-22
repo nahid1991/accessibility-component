@@ -1,7 +1,7 @@
 # Accessibility Component
 The React Accessibility Enhancer is a powerful tool designed to improve the visual representation and accessibility of React applications. With this component, you can effortlessly enhance the user experience for individuals with diverse needs, ensuring your application is inclusive and usable for everyone.
 
-<img src="https://s5.gifyu.com/images/SRQOe.gif" alt="Example Image" />
+![Example Image](https://s5.gifyu.com/images/SRQOe.gif)
 
 ## [Repository](https://github.com/nahid1991/accessibility-component/)
 
