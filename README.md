@@ -52,14 +52,14 @@ The React Accessibility Enhancer is a powerful tool designed to improve the visu
 - [Nahid Islam](https://github.com/nahid1991)
 - [Adeline Silva Schäfer](https://github.com/adelinerd)
 
+### Acknowledgment
+
+This project is inspired by the work done in https://www.unimed.coop.br/site/
+
 ## Contact us
 Your feedback is very valuable to us. Please email us in one of the emails. Looking forward to hearing your concerns and new ideas.
 - <a href="mailto:nahidshaiket10300@gmail.com">nahidshaiket10300@gmail.com</a>
 - <a href="mailto:adeline.schaefer@iese.fraunhofer.de">adeline.schaefer@iese.fraunhofer.de </a>
-
-### Acknowledgment
-
-This project is inspired by the work done in https://www.unimed.coop.br/site/
 
 ## License
 
