@@ -32,9 +32,6 @@ import { LiaPagerSolid } from 'react-icons/lia';
 import { GrTextAlignLeft, GrTextAlignRight } from 'react-icons/gr';
 import Icon from '@mdi/react';
 import { HiMagnifyingGlassMinus, HiMagnifyingGlassPlus } from 'react-icons/hi2';
-import LocalSettingsService, {
-  FONT_SIZE_KEY
-} from '../../services/LocalSettingsService';
 
 export interface AccessibilityProps {
   children?: React.ReactNode;
@@ -509,30 +506,6 @@ const Accessibility: React.FC<AccessibilityProps> = ({
       ? bodyClasses.add('dark-contrast')
       : bodyClasses.remove('dark-contrast');
   }, [invertColor, darkContrast, lightContrast]);
-
-  // useEffect(() => {
-  //   if (!fontSize) {
-  //     return;
-  //   }
-  //   const rootElement = document.documentElement;
-  //   rootElement.style.fontSize = `${fontSize}px`;
-  // }, [fontSize]);
-  //
-  // useEffect(() => {
-  //   if (!fontSize) {
-  //     return;
-  //   }
-  //   localStorage.setItem('appFontSize', '16');
-  // }, [fontSize]);
-  //
-  // useEffect(() => {
-  //   const value = localStorage.getItem('appFontSize');
-  //   if (value) {
-  //     setFontSize(parseInt(value));
-  //   } else {
-  //     setFontSize(16);
-  //   }
-  // }, []);
 
   const features: Feature[] = [
     {
