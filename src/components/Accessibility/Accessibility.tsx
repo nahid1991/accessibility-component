@@ -3,27 +3,45 @@ import './Accessibility.css';
 import MUI from './ThemedLayout/MUI';
 import Bootstrap from './ThemedLayout/Bootstrap';
 import {
-  mdiArrowLeftRightBoldOutline, mdiArrowUpDownBoldOutline, mdiContrastCircle,
+  mdiArrowLeftRightBoldOutline,
+  mdiArrowUpDownBoldOutline,
+  mdiContrastCircle,
   mdiCursorDefaultOutline,
-  mdiImageOffOutline, mdiInvertColors,
+  mdiImageOffOutline,
+  mdiInvertColors,
   mdiLinkBoxOutline,
-  mdiMinusBoxOutline, mdiPageNextOutline, mdiReceiptTextArrowLeftOutline, mdiReceiptTextArrowRightOutline
-} from "@mdi/js";
-import {Feature, Types} from "./types";
-import {translation} from "./Language";
-import {FaArrowsAltH, FaArrowsAltV, FaLink, FaMousePointer} from "react-icons/fa";
-import {MdInvertColors, MdOutlineSplitscreen} from "react-icons/md";
-import {LuImageOff} from "react-icons/lu";
-import {ImContrast} from "react-icons/im";
-import {LiaPagerSolid} from "react-icons/lia";
-import {GrTextAlignLeft, GrTextAlignRight} from "react-icons/gr";
-import Icon from "@mdi/react";
+  mdiMagnifyMinus,
+  mdiMagnifyPlus,
+  mdiMinusBoxOutline,
+  mdiPageNextOutline,
+  mdiReceiptTextArrowLeftOutline,
+  mdiReceiptTextArrowRightOutline
+} from '@mdi/js';
+import { Feature, Types } from './types';
+import { translation } from './Language';
+import {
+  FaArrowsAltH,
+  FaArrowsAltV,
+  FaLink,
+  FaMousePointer
+} from 'react-icons/fa';
+import { MdInvertColors, MdOutlineSplitscreen } from 'react-icons/md';
+import { LuImageOff } from 'react-icons/lu';
+import { ImContrast } from 'react-icons/im';
+import { LiaPagerSolid } from 'react-icons/lia';
+import { GrTextAlignLeft, GrTextAlignRight } from 'react-icons/gr';
+import Icon from '@mdi/react';
+import { HiMagnifyingGlassMinus, HiMagnifyingGlassPlus } from 'react-icons/hi2';
+import LocalSettingsService, {
+  FONT_SIZE_KEY
+} from '../../services/LocalSettingsService';
 
 export interface AccessibilityProps {
   children?: React.ReactNode;
   theme?: string;
   lang?: string;
   excludedFeatures?: string[];
+  maxFontSize?: number;
 }
 
 export interface HeadingData {
@@ -37,7 +55,8 @@ const Accessibility: React.FC<AccessibilityProps> = ({
   children,
   theme = 'mui',
   lang = 'en',
-  excludedFeatures = []
+  excludedFeatures = [],
+  maxFontSize = null
 }) => {
   const ref = useRef(null);
   const [bigCursor, setBigCursor] = useState<boolean>(false);
@@ -63,6 +82,7 @@ const Accessibility: React.FC<AccessibilityProps> = ({
   const [lowSaturation, setLowSaturation] = useState<boolean>(false);
   const [highSaturation, setHighSaturation] = useState<boolean>(false);
   const [desaturation, setDesaturation] = useState<boolean>(false);
+  const [magnify, setMagnify] = useState<boolean>(false);
 
   useEffect(() => {
     const newClasses: Set<string> = new Set<string>();
@@ -76,6 +96,7 @@ const Accessibility: React.FC<AccessibilityProps> = ({
     if (lowSaturation) newClasses.add('low-saturation');
     if (highSaturation) newClasses.add('high-saturation');
     if (desaturation) newClasses.add('desaturation');
+    if (magnify) newClasses.add('magnify');
     setClasses(Array.from(newClasses));
   }, [
     bigCursor,
@@ -87,8 +108,13 @@ const Accessibility: React.FC<AccessibilityProps> = ({
     shouldRightAlign,
     lowSaturation,
     highSaturation,
-    desaturation
+    desaturation,
+    magnify
   ]);
+
+  useEffect(() => {
+    setMagnify(!!localStorage.getItem('magnify'));
+  }, []);
 
   useEffect(() => {
     setBigCursor(!!localStorage.getItem('bigCursor'));
@@ -185,7 +211,7 @@ const Accessibility: React.FC<AccessibilityProps> = ({
 
   const handleMouseMove = useCallback(
     (event: React.MouseEvent<HTMLDivElement | HTMLElement>) => {
-      const bodyHeight = ref.current ? ref.current["clientHeight"] : null;
+      const bodyHeight = ref.current ? ref.current['clientHeight'] : null;
       if (bodyHeight && bodyHeight - event.clientY <= 50) {
         setMouseYPosition(bodyHeight - 50);
         return;
@@ -439,6 +465,7 @@ const Accessibility: React.FC<AccessibilityProps> = ({
     setHighSaturation(false);
     setLowSaturation(false);
     setDesaturation(false);
+    setMagnify(false);
 
     localStorage.removeItem('bigCursor');
     localStorage.removeItem('readingMask');
@@ -454,7 +481,21 @@ const Accessibility: React.FC<AccessibilityProps> = ({
     localStorage.removeItem('lowSaturation');
     localStorage.removeItem('highSaturation');
     localStorage.removeItem('desaturation');
+    localStorage.removeItem('magnify');
   }, []);
+
+  const handleMagnify = useCallback(() => {
+    magnify
+      ? localStorage.removeItem('magnify')
+      : localStorage.setItem('magnify', '1');
+    setMagnify(!magnify);
+  }, [magnify]);
+
+  useEffect(() => {
+    magnify
+      ? (document.documentElement.style.fontSize = `${maxFontSize ?? 24}px`)
+      : (document.documentElement.style.fontSize = `inherit`);
+  }, [magnify]);
 
   useEffect(() => {
     const bodyClasses = document.body.classList;
@@ -469,111 +510,228 @@ const Accessibility: React.FC<AccessibilityProps> = ({
       : bodyClasses.remove('dark-contrast');
   }, [invertColor, darkContrast, lightContrast]);
 
+  // useEffect(() => {
+  //   if (!fontSize) {
+  //     return;
+  //   }
+  //   const rootElement = document.documentElement;
+  //   rootElement.style.fontSize = `${fontSize}px`;
+  // }, [fontSize]);
+  //
+  // useEffect(() => {
+  //   if (!fontSize) {
+  //     return;
+  //   }
+  //   localStorage.setItem('appFontSize', '16');
+  // }, [fontSize]);
+  //
+  // useEffect(() => {
+  //   const value = localStorage.getItem('appFontSize');
+  //   if (value) {
+  //     setFontSize(parseInt(value));
+  //   } else {
+  //     setFontSize(16);
+  //   }
+  // }, []);
+
   const features: Feature[] = [
     {
       feature: bigCursor,
       handler: handleBigCursorChange,
-      icon: theme === "bootstrap" ? <FaMousePointer size={30} /> : <Icon path={mdiCursorDefaultOutline} size={2} />,
+      icon:
+        theme === 'bootstrap' ? (
+          <FaMousePointer size={30} />
+        ) : (
+          <Icon path={mdiCursorDefaultOutline} size={2} />
+        ),
       featureName: Types.BIG_CURSOR,
       text: translation[lang].bigCursor
     },
     {
       feature: highlightLink,
       handler: handleLinkHighlightingChange,
-      icon: theme === "bootstrap" ? <FaLink size={30} /> : <Icon path={mdiLinkBoxOutline} size={2} />,
+      icon:
+        theme === 'bootstrap' ? (
+          <FaLink size={30} />
+        ) : (
+          <Icon path={mdiLinkBoxOutline} size={2} />
+        ),
       featureName: Types.HIGHLIGHT_LINK,
       text: translation[lang].highlightLink
     },
     {
       feature: readingMask,
       handler: handleReadingMask,
-      icon: theme === "bootstrap" ? <MdOutlineSplitscreen size={30} /> : <Icon path={mdiMinusBoxOutline} size={2} />,
+      icon:
+        theme === 'bootstrap' ? (
+          <MdOutlineSplitscreen size={30} />
+        ) : (
+          <Icon path={mdiMinusBoxOutline} size={2} />
+        ),
       featureName: Types.READING_MASK,
       text: translation[lang].readingMask
     },
     {
       feature: hideImage,
       handler: handleHideImage,
-      icon: theme === "bootstrap" ? <LuImageOff size={30} /> : <Icon path={mdiImageOffOutline} size={2} />,
+      icon:
+        theme === 'bootstrap' ? (
+          <LuImageOff size={30} />
+        ) : (
+          <Icon path={mdiImageOffOutline} size={2} />
+        ),
       featureName: Types.HIDE_IMAGE,
       text: translation[lang].hideImage
     },
     {
       feature: increasedLetterSpace,
       handler: handleLetterSpace,
-      icon: theme === "bootstrap" ? <FaArrowsAltH size={30} /> : <Icon path={mdiArrowLeftRightBoldOutline} size={2} />,
+      icon:
+        theme === 'bootstrap' ? (
+          <FaArrowsAltH size={30} />
+        ) : (
+          <Icon path={mdiArrowLeftRightBoldOutline} size={2} />
+        ),
       featureName: Types.INCREASE_LETTER_SPACE,
       text: translation[lang].increaseLetterSpace
     },
     {
       feature: increasedLineHeight,
       handler: handleLineHeight,
-      icon: theme === "bootstrap" ? <FaArrowsAltV size={30} /> : <Icon path={mdiArrowUpDownBoldOutline} size={2} />,
+      icon:
+        theme === 'bootstrap' ? (
+          <FaArrowsAltV size={30} />
+        ) : (
+          <Icon path={mdiArrowUpDownBoldOutline} size={2} />
+        ),
       featureName: Types.INCREASE_LINE_HEIGHT,
       text: translation[lang].increaseLineHeight
     },
     {
       feature: darkContrast,
       handler: handleDarkContrast,
-      icon: theme === "bootstrap" ? <ImContrast size={30} /> : <Icon path={mdiContrastCircle} size={2} />,
+      icon:
+        theme === 'bootstrap' ? (
+          <ImContrast size={30} />
+        ) : (
+          <Icon path={mdiContrastCircle} size={2} />
+        ),
       featureName: Types.DARK_CONTRAST,
       text: translation[lang].darkContrast
     },
     {
       feature: lightContrast,
       handler: handleLightContrast,
-      icon: theme === "bootstrap" ? <ImContrast size={30} /> : <Icon path={mdiContrastCircle} size={2} />,
+      icon:
+        theme === 'bootstrap' ? (
+          <ImContrast size={30} />
+        ) : (
+          <Icon path={mdiContrastCircle} size={2} />
+        ),
       featureName: Types.LIGHT_CONTRAST,
       text: translation[lang].lightContrast
     },
     {
       feature: invertColor,
       handler: handleInvertColor,
-      icon: theme === "bootstrap" ? <MdInvertColors size={30} /> : <Icon path={mdiInvertColors} size={2} />,
+      icon:
+        theme === 'bootstrap' ? (
+          <MdInvertColors size={30} />
+        ) : (
+          <Icon path={mdiInvertColors} size={2} />
+        ),
       featureName: Types.INVERT_COLOR,
       text: translation[lang].invertColor
     },
     {
       feature: isPageStructureOpen,
       handler: handlePageStructureOpening,
-      icon: theme === "bootstrap" ? <LiaPagerSolid size={30} /> : <Icon path={mdiPageNextOutline} size={2} />,
+      icon:
+        theme === 'bootstrap' ? (
+          <LiaPagerSolid size={30} />
+        ) : (
+          <Icon path={mdiPageNextOutline} size={2} />
+        ),
       featureName: Types.PAGE_STRUCTURE,
       text: translation[lang].pageStructure
     },
     {
       feature: shouldLeftAlign,
       handler: handleLeftAlign,
-      icon: theme === "bootstrap" ? <GrTextAlignLeft size={30} /> : <Icon path={mdiReceiptTextArrowLeftOutline} size={2} />,
+      icon:
+        theme === 'bootstrap' ? (
+          <GrTextAlignLeft size={30} />
+        ) : (
+          <Icon path={mdiReceiptTextArrowLeftOutline} size={2} />
+        ),
       featureName: Types.LEFT_ALIGN,
       text: translation[lang].leftAlign
     },
     {
       feature: shouldRightAlign,
       handler: handleRightAlign,
-      icon: theme === "bootstrap" ? <GrTextAlignRight size={30} /> : <Icon path={mdiReceiptTextArrowRightOutline} size={2} />,
+      icon:
+        theme === 'bootstrap' ? (
+          <GrTextAlignRight size={30} />
+        ) : (
+          <Icon path={mdiReceiptTextArrowRightOutline} size={2} />
+        ),
       featureName: Types.RIGHT_ALIGN,
       text: translation[lang].rightAlign
     },
     {
       feature: lowSaturation,
       handler: handleLowSaturation,
-      icon: theme === "bootstrap" ? <MdInvertColors size={30} /> : <Icon path={mdiInvertColors} size={2} />,
+      icon:
+        theme === 'bootstrap' ? (
+          <MdInvertColors size={30} />
+        ) : (
+          <Icon path={mdiInvertColors} size={2} />
+        ),
       featureName: Types.LOW_SATURATION,
       text: translation[lang].lowSaturation
     },
     {
       feature: highSaturation,
       handler: handleHighSaturation,
-      icon: theme === "bootstrap" ? <MdInvertColors size={30} /> : <Icon path={mdiInvertColors} size={2} />,
+      icon:
+        theme === 'bootstrap' ? (
+          <MdInvertColors size={30} />
+        ) : (
+          <Icon path={mdiInvertColors} size={2} />
+        ),
       featureName: Types.HIGH_SATURATION,
       text: translation[lang].highSaturation
     },
     {
       feature: desaturation,
       handler: handleDesaturation,
-      icon: theme === "bootstrap" ? <MdInvertColors size={30} /> : <Icon path={mdiInvertColors} size={2} />,
+      icon:
+        theme === 'bootstrap' ? (
+          <MdInvertColors size={30} />
+        ) : (
+          <Icon path={mdiInvertColors} size={2} />
+        ),
       featureName: Types.DESATURATE,
       text: translation[lang].desaturate
+    },
+    {
+      feature: magnify,
+      handler: handleMagnify,
+      icon:
+        theme === 'bootstrap' ? (
+          magnify ? (
+            <HiMagnifyingGlassMinus size={30} />
+          ) : (
+            <HiMagnifyingGlassPlus size={30} />
+          )
+        ) : magnify ? (
+          <Icon path={mdiMagnifyMinus} size={2} />
+        ) : (
+          <Icon path={mdiMagnifyPlus} size={2} />
+        ),
+      featureName: Types.MAGNIFY,
+      text: translation[lang].magnify
     }
   ];
 
@@ -593,7 +751,7 @@ const Accessibility: React.FC<AccessibilityProps> = ({
         handleReset={handleReset}
         language={lang}
         features={features.filter((f) => {
-          return !excludedFeatures.includes(f.featureName)
+          return !excludedFeatures.includes(f.featureName);
         })}
         resetDisabled={
           !bigCursor &&
@@ -610,7 +768,9 @@ const Accessibility: React.FC<AccessibilityProps> = ({
           !shouldRightAlign &&
           !lowSaturation &&
           !highSaturation &&
-          !desaturation}
+          !desaturation &&
+          !magnify
+        }
       />
     </>
   );

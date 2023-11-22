@@ -1,14 +1,12 @@
 import React from 'react';
 import Icon from '@mdi/react';
 import ReadingMask from '../../ReadingMask';
-import { Box, Button, Grid, Stack, Typography } from '@mui/material';
-import {
-  mdiWheelchairAccessibility
-} from '@mdi/js';
+import { Box, Button, Grid, Stack, Tooltip, Typography } from '@mui/material';
+import { mdiWheelchairAccessibility } from '@mdi/js';
 import PageStructure from '../../PageStructure/PageStructure';
 import { HeadingData } from '../../Accessibility';
 import { translation } from '../../Language';
-import {Feature, Types} from '../../types';
+import { Feature, Types } from '../../types';
 
 export interface MUIProps {
   children?: React.ReactNode;
@@ -45,11 +43,12 @@ const MUI: React.FC<MUIProps> = React.forwardRef<HTMLDivElement, MUIProps>(
     },
     ref
   ) => {
-    const bigCursor = features.filter((f) => f.featureName === Types.BIG_CURSOR).length > 0
-      && features.filter((f) => f.featureName === Types.BIG_CURSOR)[0].feature;
-    console.log(bigCursor);
-    const readingMask = features.filter((f) => f.featureName === Types.READING_MASK).length > 0
-      && features.filter((f) => f.featureName === Types.READING_MASK)[0].feature;
+    const bigCursor =
+      features.filter((f) => f.featureName === Types.BIG_CURSOR).length > 0 &&
+      features.filter((f) => f.featureName === Types.BIG_CURSOR)[0].feature;
+    const readingMask =
+      features.filter((f) => f.featureName === Types.READING_MASK).length > 0 &&
+      features.filter((f) => f.featureName === Types.READING_MASK)[0].feature;
 
     return (
       <Box
@@ -109,9 +108,7 @@ const MUI: React.FC<MUIProps> = React.forwardRef<HTMLDivElement, MUIProps>(
                 <Grid item xs={4}>
                   <Button
                     variant="text"
-                    disabled={
-                      resetDisabled
-                    }
+                    disabled={resetDisabled}
                     fullWidth
                     onClick={() => handleReset()}
                     aria-label={translation[language].reset}
@@ -120,51 +117,49 @@ const MUI: React.FC<MUIProps> = React.forwardRef<HTMLDivElement, MUIProps>(
                   </Button>
                 </Grid>
               </Grid>
-              {
-                features.map((f) => (
-                  <Grid
-                    container
-                    item
-                    xs={12}
-                    sm={12}
-                    md={4}
-                    flexDirection="column"
-                    alignItems="center"
-                    aria-label={f.text}
+              {features.map((f) => (
+                <Grid
+                  container
+                  item
+                  xs={12}
+                  sm={12}
+                  md={6}
+                  flexDirection="column"
+                  alignItems="center"
+                  aria-label={f.text}
+                  sx={{
+                    minHeight: '125px',
+                    height: 'auto'
+                  }}
+                >
+                  <Button
+                    variant="outlined"
+                    fullWidth
+                    onClick={() => f.handler()}
+                    sx={{
+                      backgroundColor: f.feature ? '#87B922' : 'white',
+                      borderColor: f.feature ? '#fff' : '#000',
+                      color: f.feature ? '#fff' : '#000',
+                      borderRadius: '20px',
+                      padding: 'inherit',
+                      height: '100%'
+                    }}
+                    className={`accessibility-button`}
                   >
-                    <Button
-                      variant="outlined"
-                      fullWidth
-                      onClick={() => f.handler()}
-                      sx={{
-                        height: '125px',
-                        backgroundColor: f.feature ? '#87B922' : 'white',
-                        borderColor: f.feature ? '#fff' : '#000',
-                        color: f.feature ? '#fff' : '#000',
-                        borderRadius: '20px',
-                        padding: 'inherit'
-                      }}
-                      className={`accessibility-button`}
+                    <Stack
+                      direction="column"
+                      width="100%"
+                      alignItems="center"
+                      gap="2px"
                     >
-                      <Stack
-                        direction="column"
-                        width="100%"
-                        alignItems="center"
-                        gap="2px"
-                      >
-                        <Box sx={{ height: '60px' }}>
-                          {f.icon}
-                        </Box>
-                        <Box sx={{ height: '30px' }}>
-                          <Typography variant="button">
-                            {f.text}
-                          </Typography>
-                        </Box>
-                      </Stack>
-                    </Button>
-                  </Grid>
-                ))
-              }
+                      <Box>{f.icon}</Box>
+                      <Box>
+                        <Typography variant="button">{f.text}</Typography>
+                      </Box>
+                    </Stack>
+                  </Button>
+                </Grid>
+              ))}
             </Grid>
           </Grid>
         )}
@@ -182,19 +177,23 @@ const MUI: React.FC<MUIProps> = React.forwardRef<HTMLDivElement, MUIProps>(
           <Icon path={mdiWheelchairAccessibility} size={2} />
         </Button>
         <Box className={classes.join(' ')}>{children}</Box>
-        {
-          features.filter((f) => f.featureName === Types.PAGE_STRUCTURE).length > 0 &&
-          (
-            <PageStructure
-              isOpen={features.filter((f) => f.featureName === Types.PAGE_STRUCTURE)[0].feature}
-              links={links}
-              headings={headings}
-              onClose={features.filter((f) => f.featureName === Types.PAGE_STRUCTURE)[0].handler}
-              language={language}
-              bigCursor={bigCursor}
-            />
-          )
-        }
+        {features.filter((f) => f.featureName === Types.PAGE_STRUCTURE).length >
+          0 && (
+          <PageStructure
+            isOpen={
+              features.filter((f) => f.featureName === Types.PAGE_STRUCTURE)[0]
+                .feature
+            }
+            links={links}
+            headings={headings}
+            onClose={
+              features.filter((f) => f.featureName === Types.PAGE_STRUCTURE)[0]
+                .handler
+            }
+            language={language}
+            bigCursor={bigCursor}
+          />
+        )}
       </Box>
     );
   }

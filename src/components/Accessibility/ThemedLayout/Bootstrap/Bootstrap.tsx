@@ -5,7 +5,7 @@ import { BiAccessibility } from 'react-icons/bi';
 import { HeadingData } from '../../Accessibility';
 import PageStructure from '../../PageStructure/PageStructure';
 import { translation } from '../../Language';
-import {Feature, Types} from '../../types';
+import { Feature, Types } from '../../types';
 
 interface BootstrapInterface {
   children?: React.ReactNode;
@@ -24,7 +24,10 @@ interface BootstrapInterface {
   resetDisabled?: boolean;
 }
 
-const Bootstrap: React.FC<BootstrapInterface> = React.forwardRef<HTMLDivElement, BootstrapInterface>(
+const Bootstrap: React.FC<BootstrapInterface> = React.forwardRef<
+  HTMLDivElement,
+  BootstrapInterface
+>(
   (
     {
       children,
@@ -42,10 +45,12 @@ const Bootstrap: React.FC<BootstrapInterface> = React.forwardRef<HTMLDivElement,
     },
     ref
   ) => {
-    const bigCursor = features.filter((f) => f.featureName === Types.BIG_CURSOR).length > 0
-      && features.filter((f) => f.featureName === Types.BIG_CURSOR)[0].feature;
-    const readingMask = features.filter((f) => f.featureName === Types.READING_MASK).length > 0
-      && features.filter((f) => f.featureName === Types.READING_MASK)[0].feature;
+    const bigCursor =
+      features.filter((f) => f.featureName === Types.BIG_CURSOR).length > 0 &&
+      features.filter((f) => f.featureName === Types.BIG_CURSOR)[0].feature;
+    const readingMask =
+      features.filter((f) => f.featureName === Types.READING_MASK).length > 0 &&
+      features.filter((f) => f.featureName === Types.READING_MASK)[0].feature;
 
     return (
       <Container
@@ -105,9 +110,7 @@ const Bootstrap: React.FC<BootstrapInterface> = React.forwardRef<HTMLDivElement,
                   >
                     <Button
                       onClick={() => handleReset()}
-                      disabled={
-                        resetDisabled
-                      }
+                      disabled={resetDisabled}
                       aria-label={translation[language].reset}
                     >
                       {translation[language].reset}
@@ -115,37 +118,37 @@ const Bootstrap: React.FC<BootstrapInterface> = React.forwardRef<HTMLDivElement,
                   </Col>
                 </Row>
               </Col>
-              {
-                features.map((f) => (
-                  <Col md={4} sm={12}>
-                    <Button
-                      className={`accessibility-button mb-1`}
-                      variant={f.feature ? 'primary' : 'outline-dark'}
-                      size="lg"
-                      onClick={() => f.handler()}
-                      style={{
-                        cursor: bigCursor ? 'inherit' : 'pointer',
-                        height: '125px',
-                        borderRadius: '20px',
-                        padding: 'inherit',
-                        width: '100%'
-                      }}
-                      aria-label={f.text}
-                    >
-                      <Container>
-                        <Row>
-                          <Col xs={12} className="mb-3">
-                            {f.icon}
-                          </Col>
-                          <Col xs={12}>
-                            <span>{f.text}</span>
-                          </Col>
-                        </Row>
-                      </Container>
-                    </Button>
-                  </Col>
-                ))
-              }
+              {features.map((f) => (
+                <Col md={6} sm={12}>
+                  <Button
+                    className={`accessibility-button mb-1`}
+                    variant={f.feature ? 'primary' : 'outline-dark'}
+                    size="lg"
+                    onClick={() => f.handler()}
+                    style={{
+                      cursor: bigCursor ? 'inherit' : 'pointer',
+                      minHeight: '125px',
+                      height: 'auto',
+                      borderRadius: '20px',
+                      padding: 'inherit',
+                      width: '100%',
+                      textOverflow: 'ellipsis'
+                    }}
+                    aria-label={f.text}
+                  >
+                    <Container>
+                      <Row>
+                        <Col xs={12} className="mb-3">
+                          {f.icon}
+                        </Col>
+                        <Col xs={12}>
+                          <span>{f.text}</span>
+                        </Col>
+                      </Row>
+                    </Container>
+                  </Button>
+                </Col>
+              ))}
             </Row>
           </Container>
         )}
@@ -163,19 +166,23 @@ const Bootstrap: React.FC<BootstrapInterface> = React.forwardRef<HTMLDivElement,
           <BiAccessibility size={30} />
         </Button>
         <Container className={classes.join(' ')}>{children}</Container>
-        {
-          features.filter((f) => f.featureName === Types.PAGE_STRUCTURE).length > 0 &&
-          (
-            <PageStructure
-              isOpen={features.filter((f) => f.featureName === Types.PAGE_STRUCTURE)[0].feature}
-              links={links}
-              headings={headings}
-              onClose={features.filter((f) => f.featureName === Types.PAGE_STRUCTURE)[0].handler}
-              language={language}
-              bigCursor={bigCursor}
-            />
-          )
-        }
+        {features.filter((f) => f.featureName === Types.PAGE_STRUCTURE).length >
+          0 && (
+          <PageStructure
+            isOpen={
+              features.filter((f) => f.featureName === Types.PAGE_STRUCTURE)[0]
+                .feature
+            }
+            links={links}
+            headings={headings}
+            onClose={
+              features.filter((f) => f.featureName === Types.PAGE_STRUCTURE)[0]
+                .handler
+            }
+            language={language}
+            bigCursor={bigCursor}
+          />
+        )}
       </Container>
     );
   }

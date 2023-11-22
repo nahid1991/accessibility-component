@@ -13,7 +13,8 @@ export const enum Types {
   RIGHT_ALIGN = 'RIGHT_ALIGN',
   LOW_SATURATION = 'LOW_SATURATION',
   HIGH_SATURATION = 'HIGH_SATURATION',
-  DESATURATE = 'DESATURATE'
+  DESATURATE = 'DESATURATE',
+  MAGNIFY = 'MAGNIFY'
 }
 
 export type Feature = {
@@ -22,4 +23,4 @@ export type Feature = {
   icon: JSX.Element;
   featureName: string;
   text: string;
-}
+};

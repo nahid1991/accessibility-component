@@ -59,6 +59,10 @@
   background-image: none !important;
 }
 
+/*.magnify * {*/
+/*  font-size: 30px !important;*/
+/*}*/
+
 .hide-image img {
   opacity: 0 !important;
 }

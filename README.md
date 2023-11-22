@@ -12,7 +12,7 @@ The React Accessibility Enhancer is a powerful tool designed to improve the visu
 
 ## Getting Started
 ### Installation
-- Either add ```"react-accessibility-package": "^0.0.35"``` in ```package.json``` and in terminal run ```npm install```
+- Either add ```"react-accessibility-package": "^0.0.39"``` in ```package.json``` and in terminal run ```npm install```
 - Or in the terminal run ```npm install react-accessibility-package```
 - Or if you are using yarn run ```yarn add react-accessibility-package```
 ### Usage
@@ -43,12 +43,19 @@ The React Accessibility Enhancer is a powerful tool designed to improve the visu
   - 'RIGHT_ALIGN'
   - 'LOW_SATURATION'
   - 'HIGH_SATURATION'
-  - 'DESATURATE'
+  - 'DESATURATE',
+  - 'MAGNIFY'
+- ```maxFontSize```: set a number for which you want to set the max fontsize for the application after the ```Magnify Text``` is applied. Default ```24px```.
 
 ## Authors and acknowledgment
 
 - [Nahid Islam](https://github.com/nahid1991)
 - [Adeline Silva Schäfer](https://github.com/adelinerd)
+
+## Contact us
+Your feedback is very valuable to us. Please email us in one of the emails. Looking forward to hearing your concerns and new ideas.
+- <a href="mailto:nahidshaiket10300@gmail.com">nahidshaiket10300@gmail.com</a>
+- <a href="mailto:adeline.schaefer@iese.fraunhofer.de">adeline.schaefer@iese.fraunhofer.de </a>
 
 ### Acknowledgment
 

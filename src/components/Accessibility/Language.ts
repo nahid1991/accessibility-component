@@ -22,7 +22,8 @@ export const translation: { [index: string]: { [key: string]: string } } = {
     language: 'Language',
     english: 'English',
     german: 'German',
-    currentLanguage: 'English'
+    currentLanguage: 'English',
+    magnify: 'Magnify text'
   },
   de: {
     accessibilityMenu: 'Barrierefreiheit-Menü',
@@ -47,6 +48,7 @@ export const translation: { [index: string]: { [key: string]: string } } = {
     language: 'Sprache',
     english: 'Englisch',
     german: 'Deutsch',
-    currentLanguage: 'Englisch'
+    currentLanguage: 'Englisch',
+    magnify: 'Text vergrößern'
   }
 };
