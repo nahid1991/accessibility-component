@@ -425,7 +425,7 @@ const Accessibility: React.FC<AccessibilityProps> = ({
       setHeadings([]);
     }
     setIsPageStructureOpen(!isPageStructureOpen);
-  }, [isPageStructureOpen, getHeadingsData, getHeadings]);
+  }, [isPageStructureOpen, getHeadingsData, getHeadings, getLinks]);
 
   const handleLeftAlign = useCallback(() => {
     shouldLeftAlign
@@ -492,7 +492,7 @@ const Accessibility: React.FC<AccessibilityProps> = ({
     magnify
       ? (document.documentElement.style.fontSize = `${maxFontSize ? maxFontSize : 24}px`)
       : (document.documentElement.style.fontSize = `inherit`);
-  }, [magnify]);
+  }, [magnify, maxFontSize]);
 
   useEffect(() => {
     const bodyClasses = document.body.classList;
