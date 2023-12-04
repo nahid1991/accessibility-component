@@ -61,6 +61,9 @@ Your feedback is very valuable to us. Please email us in one of the emails. Look
 - <a href="mailto:nahidshaiket10300@gmail.com">nahidshaiket10300@gmail.com</a>
 - <a href="mailto:adeline.schaefer@iese.fraunhofer.de">adeline.schaefer@iese.fraunhofer.de </a>
 
+## Evaluation
+Please take a little bit time to do an evaluation [here](https://forms.gle/ZcpioePf8WTXysif6).
+
 ## License
 
 Copyright (C) 2023 Nahid Islam
