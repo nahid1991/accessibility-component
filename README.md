@@ -46,7 +46,9 @@ The React Accessibility Enhancer is a powerful tool designed to improve the visu
   - 'DESATURATE',
   - 'MAGNIFY'
 - ```maxFontSize```: set a number for which you want to set the max fontsize for the application after the ```Magnify Text``` is applied. Default ```24px```.
-
+### Other settings
+- ```dark-contrast-border```: When the app is in ```Dark Contrast```, if you want any component to have white border add this class to the classname of the component.
+- ```light-contrast-border```: When the app is in ```Light Contrast```, if you want any component to have black border add this class to the classname of the component.
 ## Authors and acknowledgment
 
 - [Nahid Islam](https://github.com/nahid1991)
