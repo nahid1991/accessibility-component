@@ -1,34 +1,35 @@
-import React from 'react';
-import './ReadingMask.css';
+import React from "react";
+import "./ReadingMask.css";
 
 export interface ReadingMaskProps {
-  position?: number;
-  mainHeight?: number;
+  mousePosition?: number;
 }
 
-const ReadingMask: React.FC<ReadingMaskProps> = ({
-  position = 0,
-  mainHeight = 0
-}) => {
+const ReadingMask: React.FC<ReadingMaskProps> = ({ mousePosition = 0 }) => {
   return (
-    <div className="reading-mask-parent" style={{ top: 0, left: 0, right: 0 }}>
+    <div
+      className="reading-mask-parent"
+      style={{
+        width: `${document.body.offsetWidth}px !important`,
+      }}
+    >
       <div
-        className="reading-mask-background"
+        className="reading-mask"
         style={{
-          maxHeight: `${position - 50}px`
+          zIndex: "2147483647 !important",
+          width: "100vw !important",
+          top: "0px",
+          height: `${mousePosition - 50}px`,
         }}
       ></div>
       <div
-        className="reading-mask-main reading-mask"
+        className="reading-mask"
         style={{
-          top: `${position - 50}px`
-        }}
-      ></div>
-      <div
-        className="reading-mask-background"
-        style={{
-          maxHeight: `${mainHeight - position - 50}px`,
-          marginTop: '100px'
+          zIndex: "2147483647 !important",
+          width: "100vw !important",
+          height: `${document.body.offsetHeight - mousePosition}px`,
+          marginTop: "100px",
+          top: `${mousePosition - 50}px`,
         }}
       ></div>
     </div>

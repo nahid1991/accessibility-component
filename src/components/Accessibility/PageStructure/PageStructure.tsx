@@ -1,4 +1,4 @@
-import React, { useCallback, useState } from 'react';
+import React, { useCallback, useState } from "react";
 import {
   Dialog,
   DialogContent,
@@ -6,11 +6,11 @@ import {
   Tabs,
   Tab,
   List,
-  ListItem
-} from '@mui/material';
-import { HeadingData } from '../Accessibility';
-import HeadingTree from './HeadingTree';
-import { translation } from '../Language';
+  ListItem,
+} from "@mui/material";
+import { HeadingData } from "../Accessibility";
+import HeadingTree from "./HeadingTree";
+import { translation } from "../Language";
 
 export interface PageStructureProps {
   isOpen?: boolean;
@@ -38,8 +38,8 @@ const PageStructure: React.FC<PageStructureProps> = ({
   links = [],
   headings = [],
   onClose = () => {},
-  language = 'en',
-  bigCursor = false
+  language = "en",
+  bigCursor = false,
 }) => {
   const [value, setValue] = useState(0);
 
@@ -47,20 +47,20 @@ const PageStructure: React.FC<PageStructureProps> = ({
     (event: React.SyntheticEvent, newValue: number) => {
       setValue(newValue);
     },
-    []
+    [],
   );
 
   return (
     <Dialog open={isOpen} onClose={onClose}>
       <DialogContent
-        sx={{ minWidth: '500px', minHeight: '60vh' }}
-        className={bigCursor ? 'cursor' : ''}
+        sx={{ minWidth: "500px", minHeight: "60vh" }}
+        className={bigCursor ? "cursor" : ""}
       >
-        <Box sx={{ width: '100%' }}>
+        <Box sx={{ width: "100%" }}>
           <Tabs
             value={value}
             onChange={handleChange}
-            sx={{ marginBottom: '10px' }}
+            sx={{ marginBottom: "10px" }}
           >
             <Tab label={translation[language].links} />
             <Tab label={translation[language].headings} />

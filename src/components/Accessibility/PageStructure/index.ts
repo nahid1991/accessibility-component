@@ -1,1 +1,1 @@
-export { default } from './PageStructure';
+export { default } from "./PageStructure";

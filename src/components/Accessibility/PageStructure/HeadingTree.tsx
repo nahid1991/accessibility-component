@@ -1,6 +1,6 @@
-import React from 'react';
-import { HeadingData } from '../Accessibility';
-import { Chip, Grid, Typography } from '@mui/material';
+import React from "react";
+import { HeadingData } from "../Accessibility";
+import { Chip, Grid, Typography } from "@mui/material";
 
 interface HeadingTreeProps {
   data: HeadingData;
@@ -11,9 +11,9 @@ const HeadingTree: React.FC<HeadingTreeProps> = ({ data }) => {
     <Grid container flexDirection="row" justifyContent="flex-start">
       <Chip
         label={data.tagName}
-        sx={{ marginBottom: '5px', marginRight: '2px' }}
+        sx={{ marginBottom: "5px", marginRight: "2px" }}
       />
-      <Typography variant="caption" sx={{ paddingTop: '5px' }}>
+      <Typography variant="caption" sx={{ paddingTop: "5px" }}>
         {data.innerText}
       </Typography>
       {data.children.length > 0 &&

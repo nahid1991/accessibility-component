@@ -1,12 +1,12 @@
-import React from 'react';
-import Icon from '@mdi/react';
-import ReadingMask from '../../ReadingMask';
-import { Box, Button, Grid, Stack, Tooltip, Typography } from '@mui/material';
-import { mdiWheelchairAccessibility } from '@mdi/js';
-import PageStructure from '../../PageStructure/PageStructure';
-import { HeadingData } from '../../Accessibility';
-import { translation } from '../../Language';
-import { Feature, Types } from '../../types';
+import React from "react";
+import Icon from "@mdi/react";
+import ReadingMask from "../../ReadingMask";
+import { Box, Button, Grid, Stack, Tooltip, Typography } from "@mui/material";
+import { mdiWheelchairAccessibility } from "@mdi/js";
+import PageStructure from "../../PageStructure/PageStructure";
+import { HeadingData } from "../../Accessibility";
+import { translation } from "../../Language";
+import { Feature, Types } from "../../types";
 
 export interface MUIProps {
   children?: React.ReactNode;
@@ -14,7 +14,7 @@ export interface MUIProps {
   isOpen?: boolean;
   classes?: string[];
   handleMouseMove?: (
-    event: React.MouseEvent<HTMLDivElement | HTMLElement>
+    event: React.MouseEvent<HTMLDivElement | HTMLElement>,
   ) => void;
   setIsOpen?: React.Dispatch<React.SetStateAction<boolean>>;
   links?: { href: string; text: string }[];
@@ -37,11 +37,11 @@ const MUI: React.FC<MUIProps> = React.forwardRef<HTMLDivElement, MUIProps>(
       links = [],
       headings = [],
       handleReset = () => {},
-      language = 'en',
+      language = "en",
       features = [],
-      resetDisabled = false
+      resetDisabled = false,
     },
-    ref
+    ref,
   ) => {
     const bigCursor =
       features.filter((f) => f.featureName === Types.BIG_CURSOR).length > 0 &&
@@ -52,18 +52,17 @@ const MUI: React.FC<MUIProps> = React.forwardRef<HTMLDivElement, MUIProps>(
 
     return (
       <Box
-        className={bigCursor ? 'cursor' : ''}
+        className={bigCursor ? "cursor" : ""}
         onMouseMove={(event) => handleMouseMove(event)}
         style={{
-          maxWidth: '100vw',
-          minHeight: '100vh'
+          maxWidth: "100vw",
+          minHeight: "100vh",
         }}
         ref={ref}
       >
         {readingMask && (
           <ReadingMask
-            position={mouseYPosition}
-            mainHeight={window.innerHeight}
+            mousePosition={mouseYPosition}
           />
         )}
         {isOpen && (
@@ -74,13 +73,13 @@ const MUI: React.FC<MUIProps> = React.forwardRef<HTMLDivElement, MUIProps>(
             width="40%"
             justifyContent="flex-start"
             sx={{
-              border: '1px solid gray',
-              backgroundColor: '#eff1f5',
+              border: "1px solid gray",
+              backgroundColor: "#eff1f5",
               zIndex: 9999,
-              position: 'fixed !important',
+              position: "fixed !important",
               top: 0,
               left: 0,
-              overflow: 'auto'
+              overflow: "auto",
             }}
           >
             <Grid container width="100%" flexDirection="row">
@@ -91,14 +90,14 @@ const MUI: React.FC<MUIProps> = React.forwardRef<HTMLDivElement, MUIProps>(
                 justifyContent="space-between"
                 xs={12}
                 sx={{
-                  marginBottom: '2px'
+                  marginBottom: "2px",
                 }}
               >
                 <Grid
                   item
                   xs={8}
                   sx={{
-                    paddingLeft: '5px'
+                    paddingLeft: "5px",
                   }}
                 >
                   <Typography variant="caption">
@@ -128,8 +127,8 @@ const MUI: React.FC<MUIProps> = React.forwardRef<HTMLDivElement, MUIProps>(
                   alignItems="center"
                   aria-label={f.text}
                   sx={{
-                    minHeight: '125px',
-                    height: 'auto'
+                    minHeight: "125px",
+                    height: "auto",
                   }}
                 >
                   <Button
@@ -137,12 +136,12 @@ const MUI: React.FC<MUIProps> = React.forwardRef<HTMLDivElement, MUIProps>(
                     fullWidth
                     onClick={() => f.handler()}
                     sx={{
-                      backgroundColor: f.feature ? '#87B922' : 'white',
-                      borderColor: f.feature ? '#fff' : '#000',
-                      color: f.feature ? '#fff' : '#000',
-                      borderRadius: '20px',
-                      padding: 'inherit',
-                      height: '100%'
+                      backgroundColor: f.feature ? "#87B922" : "white",
+                      borderColor: f.feature ? "#fff" : "#000",
+                      color: f.feature ? "#fff" : "#000",
+                      borderRadius: "20px",
+                      padding: "inherit",
+                      height: "100%",
                     }}
                     className={`accessibility-button`}
                   >
@@ -166,17 +165,17 @@ const MUI: React.FC<MUIProps> = React.forwardRef<HTMLDivElement, MUIProps>(
         <Button
           onClick={() => setIsOpen(!isOpen)}
           sx={{
-            cursor: bigCursor ? 'inherit' : 'pointer',
-            left: isOpen ? '41%' : '0',
-            color: 'black',
-            position: 'fixed'
+            cursor: bigCursor ? "inherit" : "pointer",
+            left: isOpen ? "41%" : "0",
+            color: "black",
+            position: "fixed",
           }}
           variant="outlined"
           className="disabled-person-button"
         >
           <Icon path={mdiWheelchairAccessibility} size={2} />
         </Button>
-        <Box className={classes.join(' ')}>{children}</Box>
+        <Box className={classes.join(" ")}>{children}</Box>
         {features.filter((f) => f.featureName === Types.PAGE_STRUCTURE).length >
           0 && (
           <PageStructure
@@ -196,7 +195,7 @@ const MUI: React.FC<MUIProps> = React.forwardRef<HTMLDivElement, MUIProps>(
         )}
       </Box>
     );
-  }
+  },
 );
 
 // eslint-disable-next-line react-refresh/only-export-components

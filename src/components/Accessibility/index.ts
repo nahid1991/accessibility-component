@@ -1,3 +1,3 @@
-export { default } from './Accessibility';
+export { default } from "./Accessibility";
 
-export { Types } from './types';
+export { Types } from "./types";

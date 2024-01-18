@@ -1,4 +1,5 @@
 # Accessibility Component
+
 The React Accessibility Enhancer is a powerful tool designed to improve the visual representation and accessibility of React applications. With this component, you can effortlessly enhance the user experience for individuals with diverse needs, ensuring your application is inclusive and usable for everyone.
 
 ![Example Image](https://github.com/nahid1991/accessibility-component/blob/main/example.gif?raw=true)
@@ -7,17 +8,22 @@ The React Accessibility Enhancer is a powerful tool designed to improve the visu
 
 ## Requirements
 
-- ```"@mui/material": "^5.0.0" or "bootstrap": "^5.0.0" and "react-bootstrap": "^2.8.0"```
-- ```"react": "^17.0.0"```
+- `"@mui/material": "^5.0.0" or "bootstrap": "^5.0.0" and "react-bootstrap": "^2.8.0"`
+- `"react": "^17.0.0"`
 
 ## Getting Started
+
 ### Installation
-- Either add ```"react-accessibility-package": "^0.0.48"``` in ```package.json``` and in terminal run ```npm install```
-- Or in the terminal run ```npm install react-accessibility-package```
-- Or if you are using yarn run ```yarn add react-accessibility-package```
+
+- Either add `"react-accessibility-package": "^0.0.49"` in `package.json` and in terminal run `npm install`
+- Or in the terminal run `npm install react-accessibility-package`
+- Or if you are using yarn run `yarn add react-accessibility-package`
+
 ### Usage
-- Import the package by adding ```import { Accessibility } from 'react-accessibility-package'```
+
+- Import the package by adding `import { Accessibility } from 'react-accessibility-package'`
 - Wrap the entry point component like in the example below:
+
 ```
     <Accessibility lang="de" excludedFeatures={[]}>
       <AppHeader />
@@ -25,10 +31,12 @@ The React Accessibility Enhancer is a powerful tool designed to improve the visu
       <AppFooter />
     </Accessibility>
 ```
+
 ### Props
-- ```lang```: This prop determines which language should be used in the component. We currently support setting "en" for English (default), "de" for German, and "pt" for Portuguese
-- ```theme```: Set "bootstrap" for Bootstrap themed component and "mui" for Mui (default) based component. Unless ```react-bootstrap``` is being used do not set the theme as "bootstrap".
-- ```excludedFeatures```: This is an array and any string corresponding to the features those will not be rendered in the component. Example: ```excludedFeatures={['BIG_CURSOR']}```. Here the big cursor feature will be excluded from the component. The list of strings we can use to exclude desired features are given below:
+
+- `lang`: This prop determines which language should be used in the component. We currently support setting "en" for English (default), "de" for German, and "pt" for Portuguese
+- `theme`: Set "bootstrap" for Bootstrap themed component and "mui" for Mui (default) based component. Unless `react-bootstrap` is being used do not set the theme as "bootstrap".
+- `excludedFeatures`: This is an array and any string corresponding to the features those will not be rendered in the component. Example: `excludedFeatures={['BIG_CURSOR']}`. Here the big cursor feature will be excluded from the component. The list of strings we can use to exclude desired features are given below:
   - 'BIG_CURSOR'
   - 'READING_MASK'
   - 'HIGHLIGHT_LINK'
@@ -45,10 +53,13 @@ The React Accessibility Enhancer is a powerful tool designed to improve the visu
   - 'HIGH_SATURATION'
   - 'DESATURATE',
   - 'MAGNIFY'
-- ```maxFontSize```: set a number for which you want to set the max fontsize for the application after the ```Magnify Text``` is applied. Default ```24px```.
+- `maxFontSize`: set a number for which you want to set the max fontsize for the application after the `Magnify Text` is applied. Default `24px`.
+
 ### Other settings
-- ```dark-contrast-border```: When the app is in ```Dark Contrast```, if you want any component to have white border add this class to the classname of the component.
-- ```light-contrast-border```: When the app is in ```Light Contrast```, if you want any component to have black border add this class to the classname of the component.
+
+- `dark-contrast-border`: When the app is in `Dark Contrast`, if you want any component to have white border add this class to the classname of the component.
+- `light-contrast-border`: When the app is in `Light Contrast`, if you want any component to have black border add this class to the classname of the component.
+
 ## Authors and acknowledgment
 
 - [Nahid Islam](https://github.com/nahid1991)
@@ -59,11 +70,14 @@ The React Accessibility Enhancer is a powerful tool designed to improve the visu
 This project is inspired by the work done in https://www.unimed.coop.br/site/
 
 ## Contact us
+
 Your feedback is very valuable to us. Please email us in one of the emails. Looking forward to hearing your concerns and new ideas.
+
 - <a href="mailto:nahidshaiket10300@gmail.com">nahidshaiket10300@gmail.com</a>
 - <a href="mailto:adeline.schaefer@iese.fraunhofer.de">adeline.schaefer@iese.fraunhofer.de </a>
 
 ## Evaluation
+
 Please take a little bit time to do an evaluation [here](https://forms.gle/ZcpioePf8WTXysif6).
 
 ## License
@@ -77,11 +91,12 @@ the Free Software Foundation, either version 3 of the License, or
 
 This program is distributed in the hope that it will be useful,
 but WITHOUT ANY WARRANTY; without even the implied warranty of
-MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
 GNU Affero General Public License for more details.
 
 You should have received a copy of the GNU Affero General Public License
-along with this program.  If not, see <http://www.gnu.org/licenses/>.
+along with this program. If not, see <http://www.gnu.org/licenses/>.
 
 ## Project Status
+
 This project is currently under development and has been not released yet

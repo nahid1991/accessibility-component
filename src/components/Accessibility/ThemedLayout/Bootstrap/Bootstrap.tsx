@@ -1,11 +1,11 @@
-import React from 'react';
-import { Button, Col, Container, Row } from 'react-bootstrap';
-import ReadingMask from '../../ReadingMask';
-import { BiAccessibility } from 'react-icons/bi';
-import { HeadingData } from '../../Accessibility';
-import PageStructure from '../../PageStructure/PageStructure';
-import { translation } from '../../Language';
-import { Feature, Types } from '../../types';
+import React from "react";
+import { Button, Col, Container, Row } from "react-bootstrap";
+import ReadingMask from "../../ReadingMask";
+import { BiAccessibility } from "react-icons/bi";
+import { HeadingData } from "../../Accessibility";
+import PageStructure from "../../PageStructure/PageStructure";
+import { translation } from "../../Language";
+import { Feature, Types } from "../../types";
 
 interface BootstrapInterface {
   children?: React.ReactNode;
@@ -13,7 +13,7 @@ interface BootstrapInterface {
   isOpen?: boolean;
   classes?: string[];
   handleMouseMove?: (
-    event: React.MouseEvent<HTMLDivElement | HTMLElement>
+    event: React.MouseEvent<HTMLDivElement | HTMLElement>,
   ) => void;
   setIsOpen?: React.Dispatch<React.SetStateAction<boolean>>;
   links?: { href: string; text: string }[];
@@ -39,11 +39,11 @@ const Bootstrap: React.FC<BootstrapInterface> = React.forwardRef<
       links = [],
       headings = [],
       handleReset = () => {},
-      language = 'en',
+      language = "en",
       features = [],
-      resetDisabled = false
+      resetDisabled = false,
     },
-    ref
+    ref,
   ) => {
     const bigCursor =
       features.filter((f) => f.featureName === Types.BIG_CURSOR).length > 0 &&
@@ -55,32 +55,31 @@ const Bootstrap: React.FC<BootstrapInterface> = React.forwardRef<
     return (
       <Container
         fluid
-        className={bigCursor ? 'cursor' : ''}
+        className={bigCursor ? "cursor" : ""}
         onMouseMove={(event) => handleMouseMove(event)}
         style={{
-          maxWidth: '100vw',
-          minHeight: '100vh'
+          maxWidth: "100vw",
+          minHeight: "100vh",
         }}
         ref={ref}
       >
         {readingMask && (
           <ReadingMask
-            position={mouseYPosition}
-            mainHeight={window.innerHeight}
+            mousePosition={mouseYPosition}
           />
         )}
         {isOpen && (
           <Container
             className="left-bar"
             style={{
-              border: '1px solid gray',
-              backgroundColor: '#eff1f5',
+              border: "1px solid gray",
+              backgroundColor: "#eff1f5",
               zIndex: 9999,
               top: 0,
               left: 0,
-              overflow: 'auto',
-              height: '100%',
-              width: '40%'
+              overflow: "auto",
+              height: "100%",
+              width: "40%",
             }}
           >
             <Row>
@@ -88,7 +87,7 @@ const Bootstrap: React.FC<BootstrapInterface> = React.forwardRef<
                 md={12}
                 sm={12}
                 style={{
-                  marginBottom: '5px'
+                  marginBottom: "5px",
                 }}
               >
                 <Row>
@@ -96,7 +95,7 @@ const Bootstrap: React.FC<BootstrapInterface> = React.forwardRef<
                     md={6}
                     sm={12}
                     style={{
-                      textAlign: 'left'
+                      textAlign: "left",
                     }}
                   >
                     <span>{translation[language].accessibilityMenu}</span>
@@ -105,7 +104,7 @@ const Bootstrap: React.FC<BootstrapInterface> = React.forwardRef<
                     md={6}
                     sm={12}
                     style={{
-                      textAlign: 'right'
+                      textAlign: "right",
                     }}
                   >
                     <Button
@@ -122,17 +121,17 @@ const Bootstrap: React.FC<BootstrapInterface> = React.forwardRef<
                 <Col md={6} sm={12}>
                   <Button
                     className={`accessibility-button mb-1`}
-                    variant={f.feature ? 'primary' : 'outline-dark'}
+                    variant={f.feature ? "primary" : "outline-dark"}
                     size="lg"
                     onClick={() => f.handler()}
                     style={{
-                      cursor: bigCursor ? 'inherit' : 'pointer',
-                      minHeight: '125px',
-                      height: 'auto',
-                      borderRadius: '20px',
-                      padding: 'inherit',
-                      width: '100%',
-                      textOverflow: 'ellipsis'
+                      cursor: bigCursor ? "inherit" : "pointer",
+                      minHeight: "125px",
+                      height: "auto",
+                      borderRadius: "20px",
+                      padding: "inherit",
+                      width: "100%",
+                      textOverflow: "ellipsis",
                     }}
                     aria-label={f.text}
                   >
@@ -155,17 +154,17 @@ const Bootstrap: React.FC<BootstrapInterface> = React.forwardRef<
         <Button
           onClick={() => setIsOpen(!isOpen)}
           style={{
-            cursor: bigCursor ? 'inherit' : 'pointer',
-            left: isOpen ? '41%' : '0',
-            color: 'black',
-            position: 'fixed'
+            cursor: bigCursor ? "inherit" : "pointer",
+            left: isOpen ? "41%" : "0",
+            color: "black",
+            position: "fixed",
           }}
           variant="outline"
           className="disabled-person-button"
         >
           <BiAccessibility size={30} />
         </Button>
-        <Container className={classes.join(' ')}>{children}</Container>
+        <Container className={classes.join(" ")}>{children}</Container>
         {features.filter((f) => f.featureName === Types.PAGE_STRUCTURE).length >
           0 && (
           <PageStructure
@@ -185,7 +184,7 @@ const Bootstrap: React.FC<BootstrapInterface> = React.forwardRef<
         )}
       </Container>
     );
-  }
+  },
 );
 
 export default Bootstrap;
