@@ -17,7 +17,7 @@ Disclaimer: It will not solve all accessibility issues in the application. Only 
 
 ### Installation
 
-- Either add `"react-accessibility-package": "^0.0.50"` in `package.json` and in terminal run `npm install`
+- Either add `"react-accessibility-package": "^0.0.51"` in `package.json` and in terminal run `npm install`
 - Or in the terminal run `npm install react-accessibility-package`
 - Or if you are using yarn run `yarn add react-accessibility-package`
 

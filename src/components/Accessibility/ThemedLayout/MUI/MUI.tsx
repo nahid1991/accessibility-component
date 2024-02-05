@@ -116,7 +116,7 @@ const MUI: React.FC<MUIProps> = React.forwardRef<HTMLDivElement, MUIProps>(
                   </Button>
                 </Grid>
               </Grid>
-              {features.map((f) => (
+              {features.map((f, index) => (
                 <Grid
                   container
                   item
@@ -144,6 +144,7 @@ const MUI: React.FC<MUIProps> = React.forwardRef<HTMLDivElement, MUIProps>(
                       height: "100%",
                     }}
                     className={`accessibility-button`}
+                    tabIndex={index+1}
                   >
                     <Stack
                       direction="column"

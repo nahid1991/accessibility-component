@@ -117,7 +117,7 @@ const Bootstrap: React.FC<BootstrapInterface> = React.forwardRef<
                   </Col>
                 </Row>
               </Col>
-              {features.map((f) => (
+              {features.map((f, index) => (
                 <Col md={6} sm={12}>
                   <Button
                     className={`accessibility-button mb-1`}
@@ -134,6 +134,7 @@ const Bootstrap: React.FC<BootstrapInterface> = React.forwardRef<
                       textOverflow: "ellipsis",
                     }}
                     aria-label={f.text}
+                    tabIndex={index+1}
                   >
                     <Container>
                       <Row>
