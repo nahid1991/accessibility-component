@@ -1,6 +1,8 @@
 # Accessibility Component
 
-The React Accessibility Enhancer is a powerful tool designed to improve the visual representation and accessibility of React applications. With this component, you can effortlessly enhance the user experience for individuals with diverse needs, ensuring your application is inclusive and usable for everyone.
+The React Accessibility Enhancer is a screen overlay for react applications. This has a few features to make react web applications more accessible.
+
+Disclaimer: It will not solve all accessibility issues in the application. Only give a few extra options intended to make the experience a little bit better. For the accessibility guidelines for your applications, check out this [link](https://www.w3.org/TR/WCAG21/).
 
 ![Example Image](https://github.com/nahid1991/accessibility-component/blob/main/example.gif?raw=true)
 
@@ -15,7 +17,7 @@ The React Accessibility Enhancer is a powerful tool designed to improve the visu
 
 ### Installation
 
-- Either add `"react-accessibility-package": "^0.0.49"` in `package.json` and in terminal run `npm install`
+- Either add `"react-accessibility-package": "^0.0.50"` in `package.json` and in terminal run `npm install`
 - Or in the terminal run `npm install react-accessibility-package`
 - Or if you are using yarn run `yarn add react-accessibility-package`
 

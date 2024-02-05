@@ -81,6 +81,24 @@ const Accessibility: React.FC<AccessibilityProps> = ({
   const [desaturation, setDesaturation] = useState<boolean>(false);
   const [magnify, setMagnify] = useState<boolean>(false);
 
+  const toggleState = () => {
+    setIsOpen(prevState => !prevState);
+  };
+
+  const handleKeyboardEvent = useCallback((event: KeyboardEvent) => {
+    if (event.ctrlKey && event.key === 'u') {
+      toggleState();
+    }
+  }, [isOpen]);
+
+  useEffect(() => {
+    document.addEventListener('keydown', handleKeyboardEvent);
+
+    return () => {
+      document.removeEventListener('keydown', handleKeyboardEvent);
+    };
+  }, []);
+
   useEffect(() => {
     const newClasses: Set<string> = new Set<string>();
     if (bigCursor) newClasses.add("cursor");

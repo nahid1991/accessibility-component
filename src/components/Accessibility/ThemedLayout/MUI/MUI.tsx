@@ -101,7 +101,7 @@ const MUI: React.FC<MUIProps> = React.forwardRef<HTMLDivElement, MUIProps>(
                   }}
                 >
                   <Typography variant="caption">
-                    {translation[language].accessibilityMenu}
+                    {translation[language].accessibilityMenu}(ctrl + u)
                   </Typography>
                 </Grid>
                 <Grid item xs={4}>

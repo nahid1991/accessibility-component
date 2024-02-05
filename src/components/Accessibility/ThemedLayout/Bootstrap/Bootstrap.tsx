@@ -98,7 +98,7 @@ const Bootstrap: React.FC<BootstrapInterface> = React.forwardRef<
                       textAlign: "left",
                     }}
                   >
-                    <span>{translation[language].accessibilityMenu}</span>
+                    <span>{translation[language].accessibilityMenu}(ctrl + u)</span>
                   </Col>
                   <Col
                     md={6}
