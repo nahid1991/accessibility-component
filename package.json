@@ -1,6 +1,6 @@
 {
   "name": "react-accessibility-package",
-  "version": "0.0.51",
+  "version": "1.0.0",
   "publishConfig": {
     "registry": "https://registry.npmjs.org/"
   },
