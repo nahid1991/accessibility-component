@@ -36,7 +36,10 @@ Disclaimer: It will not solve all accessibility issues in the application. Only 
 
 ### Props
 
-- `lang`: This prop determines which language should be used in the component. We currently support setting "en" for English (default), "de" for German, and "pt" for Portuguese
+- `lang`: This prop determines which language should be used in the component. Currently the following languages are supported:
+    - "en" for English (default)
+    - "de" for German
+    - "pt" for Portuguese
 - `theme`: Set "bootstrap" for Bootstrap themed component and "mui" for Mui (default) based component. Unless `react-bootstrap` is being used do not set the theme as "bootstrap".
 - `excludedFeatures`: This is an array and any string corresponding to the features those will not be rendered in the component. Example: `excludedFeatures={['BIG_CURSOR']}`. Here the big cursor feature will be excluded from the component. The list of strings we can use to exclude desired features are given below:
   - 'BIG_CURSOR'
