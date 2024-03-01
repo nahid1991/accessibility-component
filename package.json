@@ -10,6 +10,7 @@
     "copy": "rm -rf ./src/components/Accessibility/* && cp -R ../portal/src/components/Accessibility/* ./src/components/Accessibility/",
     "rollup": "rollup -c",
     "patch": "npm version patch",
+    "major": "npm version major",
     "publish": "npm publish"
   },
   "keywords": [

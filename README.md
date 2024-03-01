@@ -17,7 +17,7 @@ Disclaimer: It will not solve all accessibility issues in the application. Only 
 
 ### Installation
 
-- Either add `"react-accessibility-package": "^0.0.51"` in `package.json` and in terminal run `npm install`
+- Either add `"react-accessibility-package": "^1.0.0"` in `package.json` and in terminal run `npm install`
 - Or in the terminal run `npm install react-accessibility-package`
 - Or if you are using yarn run `yarn add react-accessibility-package`
 
@@ -36,10 +36,7 @@ Disclaimer: It will not solve all accessibility issues in the application. Only 
 
 ### Props
 
-- `lang`: This prop determines which language should be used in the component. Currently the following languages are supported:
-    - "en" for English (default)
-    - "de" for German
-    - "pt" for Portuguese
+- `lang`: This prop determines which language should be used in the component. We currently support setting "en" for English (default), "de" for German, and "pt" for Portuguese
 - `theme`: Set "bootstrap" for Bootstrap themed component and "mui" for Mui (default) based component. Unless `react-bootstrap` is being used do not set the theme as "bootstrap".
 - `excludedFeatures`: This is an array and any string corresponding to the features those will not be rendered in the component. Example: `excludedFeatures={['BIG_CURSOR']}`. Here the big cursor feature will be excluded from the component. The list of strings we can use to exclude desired features are given below:
   - 'BIG_CURSOR'
@@ -87,7 +84,7 @@ Please take a little bit time to do an evaluation [here](https://forms.gle/Zcpio
 
 ## License
 
-Copyright (C) 2023 Nahid Islam
+Copyright (C) 2024 Nahid Islam and Adeline Silva Schäfer
 
 This program is free software: you can redistribute it and/or modify
 it under the terms of the GNU Affero General Public License as published by
